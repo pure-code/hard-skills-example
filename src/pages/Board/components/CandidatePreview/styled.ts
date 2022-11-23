@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CandidatePreviewContainer = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ export const CandidatePreviewContainer = styled.div`
   background: ${({ theme }) => theme.mainBg};
   border-radius: 6px;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     flex-direction: column;
     align-items: flex-start;
     padding: 15px;
@@ -21,12 +21,12 @@ export const Avatar = styled.div`
   border-radius: 6px;
   overflow: hidden;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     width: 100%;
     height: 240px;
   }
 
-  img{
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -36,7 +36,7 @@ export const Avatar = styled.div`
 export const Info = styled.div`
   margin: 0 0 0 30px;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     margin: 20px 0 0 0;
   }
 `;
@@ -47,7 +47,7 @@ export const Name = styled.span`
   font-weight: 600;
   margin: 0 0 10px 0;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     font-size: 18px;
     margin: 0 0 4px 0;
   }
@@ -57,9 +57,9 @@ export const Title = styled.span`
   display: block;
   font-size: 16px;
   margin: 0 0 10px 0;
-  opacity: .8;
+  opacity: 0.8;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     font-size: 14px;
     margin: 0 0 4px 0;
   }
@@ -79,8 +79,8 @@ export const Delete = styled.button`
   border-radius: 6px;
   margin: 20px 0 0 0;
   cursor: pointer;
-  
-  svg{
+
+  svg {
     fill: #fff;
     margin: 0 10px 0 0;
   }

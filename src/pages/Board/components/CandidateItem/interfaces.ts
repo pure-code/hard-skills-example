@@ -1,8 +1,13 @@
-import { Candidate } from '../../../../types';
-import { UseDragDropPropsReturn } from '../../../../hooks/interfaces';
+import { Candidate } from "../../../../types";
+import { UseDragDropPropsReturn } from "../../../../hooks/interfaces";
 
-export interface CandidateItemProps{
+export interface CandidateItemProps {
   item: Candidate;
   onDrop: (dropZone: Element | null) => void;
-  onItemMove: (props: Pick<UseDragDropPropsReturn, 'mouseY' | 'hoveredElement' | 'dragItem'>) => void;
+  onItemMove: (
+    props: Pick<
+      UseDragDropPropsReturn,
+      "mouseY" | "hoveredElement" | "dragItem"
+    >
+  ) => void;
 }

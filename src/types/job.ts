@@ -1,11 +1,11 @@
-export enum Stages{
-  new = 'new',
-  inProgress = 'inProgress',
-  interviewed = 'interviewed',
-  offer = 'offer'
+export enum Stages {
+  new = "new",
+  inProgress = "inProgress",
+  interviewed = "interviewed",
+  offer = "offer",
 }
 
-export interface Candidate{
+export interface Candidate {
   id: string;
   jobId: string;
   name: string;
@@ -17,13 +17,13 @@ export interface Candidate{
   link: string;
 }
 
-export interface CandidateGroup{
+export interface CandidateGroup {
   type: Stages;
   title: string;
   list: Candidate[];
 }
 
-export interface Job{
+export interface Job {
   id: string;
   name: string;
   company: string;

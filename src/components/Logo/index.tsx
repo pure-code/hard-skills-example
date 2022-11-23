@@ -1,4 +1,4 @@
-import { LogoContainer } from './styled';
+import { LogoContainer } from "./styled";
 
 const Logo = () => (
   <LogoContainer>

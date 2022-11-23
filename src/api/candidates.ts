@@ -1,6 +1,4 @@
-import { Candidate } from '../types';
-import {
-  GETRequest,
-} from './createRequest';
+import { Candidate } from "../types";
+import { GETRequest } from "./createRequest";
 
-export const getCandidates = () => GETRequest<Candidate[]>('/character');
+export const getCandidates = () => GETRequest<Candidate[]>("/character");

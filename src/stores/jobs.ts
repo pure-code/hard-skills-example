@@ -1,10 +1,6 @@
-import {
-  action, computed, makeAutoObservable,
-} from 'mobx';
-import { demoJobs } from './initialData';
-import {
-  Candidate, Job, Stages,
-} from '../types';
+import { action, computed, makeAutoObservable } from "mobx";
+import { demoJobs } from "./initialData";
+import { Candidate, Job, Stages } from "../types";
 
 class Jobs {
   constructor() {
@@ -15,9 +11,9 @@ class Jobs {
 
   isFetchingCandidates = true;
 
-  selectedJobId = '';
+  selectedJobId = "";
 
-  searchQuery = '';
+  searchQuery = "";
 
   @action addJob = (newJob: Job) => {
     this.jobsList.push(newJob);
@@ -32,10 +28,14 @@ class Jobs {
   }
 
   @computed get candidates() {
-    return this.jobsList.find((job) => job.id === this.selectedJobId)?.candidates || [];
+    return (
+      this.jobsList.find((job) => job.id === this.selectedJobId)?.candidates ||
+      []
+    );
   }
 
-  @action getJobById = (jobId: string) => this.jobsList.find((job) => job.id === jobId);
+  @action getJobById = (jobId: string) =>
+    this.jobsList.find((job) => job.id === jobId);
 
   @action setSelectedJob = (jobId: string) => {
     this.setIsFetchingJobs(true);
@@ -63,7 +63,9 @@ class Jobs {
   };
 
   @action addCandidate = (newCandidate: Candidate) => {
-    this.candidates.find((el) => el.type === Stages.new)?.list.unshift(newCandidate);
+    this.candidates
+      .find((el) => el.type === Stages.new)
+      ?.list.unshift(newCandidate);
   };
 
   @action deleteCandidate = (id: string) => {
@@ -74,11 +76,22 @@ class Jobs {
     }
   };
 
-  @action moveCandidate = (id: string, targetColumn: number, currentColumn: number, position: number) => {
-    const targetCandidate = this.candidates[currentColumn].list.find((el) => el.id === id);
+  @action moveCandidate = (
+    id: string,
+    targetColumn: number,
+    currentColumn: number,
+    position: number
+  ) => {
+    const targetCandidate = this.candidates[currentColumn].list.find(
+      (el) => el.id === id
+    );
     if (targetCandidate) {
-      this.candidates[currentColumn].list = this.candidates[currentColumn].list.filter((el) => el.id !== id);
-      this.candidates[targetColumn].list.splice(position, 0, { ...targetCandidate });
+      this.candidates[currentColumn].list = this.candidates[
+        currentColumn
+      ].list.filter((el) => el.id !== id);
+      this.candidates[targetColumn].list.splice(position, 0, {
+        ...targetCandidate,
+      });
     }
   };
 }

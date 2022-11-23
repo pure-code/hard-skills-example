@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { HEADER_HEIGHT } from '../../../../constants/globalStyles';
+import styled from "styled-components";
+import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -10,8 +10,8 @@ export const HeaderContainer = styled.header`
   height: ${HEADER_HEIGHT}px;
   border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
   padding: 0 30px;
-  
-  @media(max-width: 767px){
+
+  @media (max-width: 767px) {
     padding: 10px 15px;
   }
 `;
@@ -22,11 +22,11 @@ export const Heading = styled.span`
   font-size: 22px;
   font-weight: 600;
 
-  @media(max-width: 1300px){
+  @media (max-width: 1300px) {
     font-size: 18px;
   }
 
-  @media(max-width: 767px){
+  @media (max-width: 767px) {
     display: none;
   }
 `;
@@ -47,8 +47,8 @@ export const AddCandidateBtn = styled.button`
   border-radius: 20px;
   border: none;
   cursor: pointer;
-  
-  @media(max-width: 1000px){
+
+  @media (max-width: 1000px) {
     font-size: 0;
   }
 
@@ -56,7 +56,7 @@ export const AddCandidateBtn = styled.button`
     margin: 0 6px 0 0;
     height: 19px;
     width: 19px;
-    @media(max-width: 1000px){
+    @media (max-width: 1000px) {
       margin: 0;
     }
   }

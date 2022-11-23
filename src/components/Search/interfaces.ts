@@ -1,3 +1,3 @@
-export interface SearchProps{
+export interface SearchProps {
   onSearch: (value: string) => void;
 }

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { HEADER_HEIGHT } from '../../../../constants/globalStyles';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
 
 export const JobsContainer = styled.div`
   position: relative;
@@ -11,7 +11,7 @@ export const JobsContainer = styled.div`
   height: 100vh;
   border-right: 1px solid ${({ theme }) => theme.mainBorder};
 
-  @media(max-width: 1200px){
+  @media (max-width: 1200px) {
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -25,8 +25,8 @@ export const JobHeader = styled.div`
   height: ${HEADER_HEIGHT}px;
   padding: 0 16px;
   border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
-  
-  span{
+
+  span {
     font-size: 18px;
     font-weight: 600;
   }
@@ -48,34 +48,34 @@ export const AddJobBtn = styled.button`
 `;
 
 export const JobList = styled.div`
-
-  @media(max-width: 1200px){
+  @media (max-width: 1200px) {
     display: flex;
     border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
     overflow-x: auto;
   }
 `;
 
-export const JobItem = styled(Link)<{selected: boolean}>`
+export const JobItem = styled(Link)<{ selected: boolean }>`
   display: block;
   padding: 11px 16px;
   text-decoration: none;
   color: inherit;
-  font-weight: ${({ selected }) => (selected ? '600' : '400')};
+  font-weight: ${({ selected }) => (selected ? "600" : "400")};
   background: ${({ selected, theme }) => {
     if (selected) {
       return theme.dark ? theme.cardBg : theme.listBg;
     }
-    return 'none';
+    return "none";
   }};
-  border-right: ${({ selected, theme }) => (selected ? `3px solid ${theme.mainBlue}` : 'none')};
+  border-right: ${({ selected, theme }) =>
+    selected ? `3px solid ${theme.mainBlue}` : "none"};
   border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
-  
-  &:hover{
+
+  &:hover {
     font-weight: 600;
   }
 
-  @media(max-width: 1200px){
+  @media (max-width: 1200px) {
     width: 200px;
     height: 44px;
     display: flex;
@@ -91,16 +91,16 @@ export const JobTitle = styled.span`
   overflow: hidden;
   max-width: 180px;
 
-  @media(max-width: 1300px){
+  @media (max-width: 1300px) {
     font-size: 13px;
   }
-  
-  i{
+
+  i {
     font-style: normal;
     font-size: 11px;
-    opacity: .5;
+    opacity: 0.5;
 
-    @media(max-width: 1200px){
+    @media (max-width: 1200px) {
       display: none;
     }
   }
@@ -119,7 +119,7 @@ export const ThemeToggle = styled.button`
   cursor: pointer;
   padding: 0;
 
-  @media(max-width: 1200px){
+  @media (max-width: 1200px) {
     position: absolute;
     top: 16px;
     left: 50%;
@@ -127,13 +127,13 @@ export const ThemeToggle = styled.button`
     width: 36px;
     height: 36px;
   }
-  
-  svg{
+
+  svg {
     width: 34px;
     height: 34px;
     fill: #fff;
 
-    @media(max-width: 1200px){
+    @media (max-width: 1200px) {
       width: 22px;
       height: 22px;
     }

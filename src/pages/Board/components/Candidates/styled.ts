@@ -1,12 +1,14 @@
-import styled from 'styled-components';
-import { HEADER_HEIGHT } from '../../../../constants/globalStyles';
-import { CandidateItemContainer } from '../CandidateItem/styled';
+import styled from "styled-components";
+import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
+import { CandidateItemContainer } from "../CandidateItem/styled";
 
 export const CandidatesContainer = styled.div`
   flex-basis: 100%;
 `;
 
-export const ColumnList = styled.div.attrs({ className: 'overflowHiddenOnDrag' })`
+export const ColumnList = styled.div.attrs({
+  className: "overflowHiddenOnDrag",
+})`
   position: relative;
   display: flex;
   flex-basis: 100%;
@@ -16,7 +18,7 @@ export const ColumnList = styled.div.attrs({ className: 'overflowHiddenOnDrag' }
   overflow: hidden;
   background: url("/pattern.png") ${({ theme }) => theme.darkBg} repeat;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     overflow-x: scroll;
     padding: 20px 6px;
   }
@@ -29,17 +31,17 @@ export const CandidatesList = styled.div`
   background: ${({ theme }) => theme.listBg};
 
   & .hoveredCandidate {
-    transition: transform .15s;
+    transition: transform 0.15s;
     transform: translateY(120px);
 
-    & ~ ${CandidateItemContainer}{
-      transition: transform .15s;
+    & ~ ${CandidateItemContainer} {
+      transition: transform 0.15s;
       transform: translateY(120px);
     }
   }
 `;
 
-export const ColumnContainer = styled.div<{color: string}>`
+export const ColumnContainer = styled.div<{ color: string }>`
   flex-basis: 90%;
   min-width: 200px;
   margin: 0 12px;

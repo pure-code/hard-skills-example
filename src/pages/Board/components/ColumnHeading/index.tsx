@@ -1,13 +1,13 @@
-import { GROUP_COLORS } from '../../../../constants/colors';
-import { Stages } from '../../../../types';
-import { ReactComponent as StarIcon } from '../../../../assets/star.svg';
-import { ReactComponent as InterviewedIcon } from '../../../../assets/interviewed.svg';
-import { ReactComponent as InProgressIcon } from '../../../../assets/checkbox.svg';
-import { ReactComponent as OfferIcon } from '../../../../assets/offer.svg';
+import { GROUP_COLORS } from "../../../../constants/colors";
+import { Stages } from "../../../../types";
+import { ReactComponent as StarIcon } from "../../../../assets/star.svg";
+import { ReactComponent as InterviewedIcon } from "../../../../assets/interviewed.svg";
+import { ReactComponent as InProgressIcon } from "../../../../assets/checkbox.svg";
+import { ReactComponent as OfferIcon } from "../../../../assets/offer.svg";
 
-import { ColumnHeadingContainer } from './styled';
+import { ColumnHeadingContainer } from "./styled";
 
-export interface ColumnHeadingProps{
+export interface ColumnHeadingProps {
   type: Stages;
   title: string;
   count: number;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FormContainer = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const FormContainer = styled.div`
   padding: 30px 20px;
   margin: 30px 0;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     width: calc(100% - 30px);
     margin: 30px 15px;
   }
@@ -21,7 +21,7 @@ export const Heading = styled.span`
   font-weight: 600;
   margin: 0 0 30px 0;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     font-size: 18px;
   }
 `;
@@ -39,9 +39,9 @@ export const AddBtn = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  
-  &:disabled{
+
+  &:disabled {
     cursor: not-allowed;
-    opacity: .7;
+    opacity: 0.7;
   }
 `;

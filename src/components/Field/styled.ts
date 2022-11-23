@@ -1,25 +1,25 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 const fieldStyles = css`
-  background: ${({ theme }) => (theme.dark ? '#35353a' : theme.listBg)};
+  background: ${({ theme }) => (theme.dark ? "#35353a" : theme.listBg)};
   border-radius: 6px;
   padding: 0 20px;
   color: inherit;
   outline: none;
-  transition: .1s;
+  transition: 0.1s;
   border: 2px solid transparent;
 
-  &::placeholder{
+  &::placeholder {
     font-size: 14px;
   }
 
-  &:focus{
+  &:focus {
     border-color: ${({ theme }) => theme.mainBlue};
     box-shadow: rgba(116, 135, 235, 0.5) 0 4px 12px 0;
   }
 `;
 
-export const FieldContainer = styled.input<{error: boolean}>`
+export const FieldContainer = styled.input<{ error: boolean }>`
   ${fieldStyles};
   width: 100%;
   height: 40px;
@@ -27,7 +27,7 @@ export const FieldContainer = styled.input<{error: boolean}>`
   ${({ theme, error }) => error && `border-color: ${theme.mainRed};`};
 `;
 
-export const CommentField = styled.textarea<{error: boolean}>`
+export const CommentField = styled.textarea<{ error: boolean }>`
   ${fieldStyles};
   height: 100px;
   resize: none;

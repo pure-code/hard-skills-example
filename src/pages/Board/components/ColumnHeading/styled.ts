@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const ColumnHeadingContainer = styled.span<{color: string}>`
+export const ColumnHeadingContainer = styled.span<{ color: string }>`
   display: flex;
   align-items: center;
   height: 34px;
@@ -12,20 +12,20 @@ export const ColumnHeadingContainer = styled.span<{color: string}>`
   border-radius: 6px;
   margin: 0 0 16px 0;
 
-  @media(max-width: 1000px){
+  @media (max-width: 1000px) {
     font-size: 13px;
     padding: 0 6px;
   }
-  
-  span{
+
+  span {
     margin: 0 0 0 6px;
   }
-  
-  svg{
+
+  svg {
     height: 16px;
     margin: 0 8px 0 0;
 
-    @media(max-width: 1000px){
+    @media (max-width: 1000px) {
       height: 14px;
       margin: 0 4px 0 0;
     }

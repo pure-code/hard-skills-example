@@ -1,9 +1,9 @@
-import { configure } from 'mobx';
-import auth from './auth';
-import jobs from './jobs';
-import theme from './theme';
+import { configure } from "mobx";
+import auth from "./auth";
+import jobs from "./jobs";
+import theme from "./theme";
 
-configure({ enforceActions: 'always' });
+configure({ enforceActions: "always" });
 
 const Store = {
   auth,

@@ -1,8 +1,8 @@
-export interface AddJobProps{
+export interface AddJobProps {
   onCreate: () => void;
 }
 
 export enum AddJobFieldsNames {
-  name = 'name',
-  company = 'company',
+  name = "name",
+  company = "company",
 }

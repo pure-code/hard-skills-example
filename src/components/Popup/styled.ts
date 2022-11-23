@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Content = styled.div`
   position: relative;
@@ -27,39 +27,39 @@ export const PopupContainer = styled.div`
   &.popup-enter {
     opacity: 0;
 
-    ${Content}{
-      transform: scale(.6);
-      transition: opacity .2s;
+    ${Content} {
+      transform: scale(0.6);
+      transition: opacity 0.2s;
     }
   }
 
   &.popup-enter-active {
     opacity: 1;
-    transition: .2s;
+    transition: 0.2s;
 
-    ${Content}{
+    ${Content} {
       transform: scale(1);
-      transition: .2s;
+      transition: 0.2s;
     }
   }
 
   &.popup-exit {
     opacity: 1;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
 
-    ${Content}{
+    ${Content} {
       transform: scale(1);
-      transition: .2s;
+      transition: 0.2s;
     }
   }
 
   &.popup-exit-active {
     opacity: 0;
-    transition: .2s;
+    transition: 0.2s;
 
-    ${Content}{
-      transform: scale(.6);
-      transition: .2s;
+    ${Content} {
+      transform: scale(0.6);
+      transition: 0.2s;
     }
   }
 `;
