@@ -23,6 +23,7 @@ export const useCandidateItemManager = ({ onDrop, onItemMove }: UseCandidateItem
         startedDragItemPosition.current = { x, y, width };
       }
 
+      document.body.classList.add('dragging');
       dragItemRef.current?.classList.add('moved');
       dragItemRef.current.style.transform = `translate(${translateX}px, ${translateY}px) rotate(-4deg)`;
       dragItemRef.current.style.position = 'fixed';
@@ -39,6 +40,7 @@ export const useCandidateItemManager = ({ onDrop, onItemMove }: UseCandidateItem
   const handleOnDrop = (dropZone: Element | null) => {
     onDrop(dropZone);
     if (dragItemRef.current) {
+      document.body.classList.remove('dragging');
       dragItemRef.current?.classList.remove('moved');
       dragItemRef.current.style.transform = '';
       dragItemRef.current.style.position = '';

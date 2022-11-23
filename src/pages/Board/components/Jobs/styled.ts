@@ -49,10 +49,10 @@ export const AddJobBtn = styled.button`
 
 export const JobList = styled.div`
 
-
   @media(max-width: 1200px){
     display: flex;
     border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
+    overflow-x: auto;
   }
 `;
 
@@ -117,6 +117,7 @@ export const ThemeToggle = styled.button`
   background: ${({ theme }) => theme.mainBlue};
   border-radius: 50%;
   cursor: pointer;
+  padding: 0;
 
   @media(max-width: 1200px){
     position: absolute;

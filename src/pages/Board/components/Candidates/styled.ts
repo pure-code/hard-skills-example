@@ -6,7 +6,7 @@ export const CandidatesContainer = styled.div`
   flex-basis: 100%;
 `;
 
-export const ColumnList = styled.div`
+export const ColumnList = styled.div.attrs({ className: 'overflowHiddenOnDrag' })`
   position: relative;
   display: flex;
   flex-basis: 100%;

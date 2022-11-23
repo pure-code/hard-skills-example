@@ -6,6 +6,10 @@ body {
     transition: .2s;
 }
 
+.dragging, .dragging .overflowHiddenOnDrag{
+    overflow: hidden;
+}
+
 *::selection {
     background: #4d84ff;
     color: #fff;
