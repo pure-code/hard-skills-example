@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import useDragAndDrop from '../../hooks/useDragAndDrop';
 import { UseDragDropPropsReturn } from '../../hooks/interfaces';
-import { HEADER_HEIGHT } from '../../constants/globalStyles';
 
 import { StyledScrollContainer, ScrollWrapper, CustomScrollBtn } from './styled';
 
@@ -38,7 +37,7 @@ const ScrollContainer = ({ children }: ScrollContainerProps) => {
   const handleOnCustomScroll = useCallback((
     { mouseY, shiftY }: UseDragDropPropsReturn,
   ) => {
-    const translateTo = mouseY - HEADER_HEIGHT - shiftY;
+    const translateTo = mouseY - shiftY;
 
     if (
       scrollBtnRef.current &&

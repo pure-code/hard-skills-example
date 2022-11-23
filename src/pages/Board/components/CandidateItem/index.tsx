@@ -38,7 +38,7 @@ const CandidateItem = ({ item, onDrop, onItemMove }: CandidateItemProps) => {
     >
       <Info>
         <Avatar>
-          <img src={avatar} alt="" />
+          <img draggable={false} src={avatar} alt="" />
         </Avatar>
         <div>
           <Name>{name}</Name>
