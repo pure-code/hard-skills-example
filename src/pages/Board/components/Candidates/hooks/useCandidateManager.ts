@@ -1,0 +1,44 @@
+import { useCallback, useRef } from 'react';
+import { UseDragDropPropsReturn } from '../../../../../hooks/interfaces';
+import { useStore } from '../../../../../hooks/useStore';
+
+export const useCandidateManager = (allColumns: HTMLDivElement[] | null[]) => {
+  const { jobs: { moveCandidate } } = useStore();
+
+  const moveElIndex = useRef(-1);
+  const lastHoveredEl = useRef<Element | null>(null);
+
+  const handleOnItemMove = useCallback(({ mouseY, hoveredElement, dragItem }: Pick<UseDragDropPropsReturn, 'mouseY' | 'hoveredElement' | 'dragItem'>) => {
+    allColumns.forEach((column) => {
+      if (column && column.contains(hoveredElement)) {
+        const { top } = column.getBoundingClientRect();
+        const selectedElPosition = mouseY - top;
+        const candidateHeight = dragItem.offsetHeight;
+        const selectedElIndex = Math.floor(selectedElPosition / candidateHeight);
+        const selectedEl = [...column.children].filter((el) => el !== dragItem)[selectedElIndex];
+        lastHoveredEl.current?.classList.remove('hoveredCandidate');
+        if (selectedEl && !selectedEl.classList.contains('moved')) {
+          selectedEl.classList.add('hoveredCandidate');
+          lastHoveredEl.current = selectedEl;
+        }
+
+        moveElIndex.current = selectedEl === dragItem ? -1 : selectedElIndex;
+      }
+    });
+  }, []);
+
+  const handleMoveCandidate = useCallback((currentColumnIndex: number, id: string) =>
+    (dropZone: Element | null) => {
+      allColumns.forEach((el, targetColumnIndex) => {
+        lastHoveredEl.current?.classList.remove('hoveredCandidate');
+        if (el && (el === dropZone || el.contains(dropZone)) && moveElIndex.current !== -1) {
+          moveCandidate(id, targetColumnIndex, currentColumnIndex, moveElIndex.current);
+        }
+      });
+    }, []);
+
+  return {
+    handleOnItemMove,
+    handleMoveCandidate,
+  };
+};

@@ -1,0 +1,81 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  globals: {
+    NodeJS: true,
+  },
+  plugins: [
+    'react',
+    '@typescript-eslint',
+  ],
+  rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
+    'jsx-one-expression-per-line': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'no-param-reassign': 'off',
+    'sort-keys': 'off',
+    'no-plusplus': 'off',
+    'react/require-default-props': 'off',
+    'operator-linebreak': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'no-underscore-dangle': 'off',
+    'import/no-unresolved': 'off',
+    'no-use-before-define': 'off',
+    'react/jsx-no-useless-fragment': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/function-component-definition': 'off',
+    'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
+    'no-trailing-spaces': 'warn',
+    'linebreak-style': ['error', 'unix'],
+    'max-len': [
+      'warn',
+      {
+        code: 140,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreUrls: true,
+      },
+    ],
+    'no-console': 'error',
+    'no-debugger': 'error',
+    'no-multiple-empty-lines': [
+      'warn',
+      {
+        max: 1,
+        maxBOF: 0,
+        maxEOF: 0,
+      },
+    ],
+    'consistent-return': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    'react/state-in-constructor': 'off',
+    'react-hooks/rules-of-hooks': 'off',
+    'react/jsx-filename-extension': [
+      1,
+      {
+        extensions: ['.tsx', '.jsx'],
+      },
+    ],
+    'react/prop-types': 'off',
+  },
+};

@@ -1,0 +1,17 @@
+body {
+    font: 400 16px Nunito, sans-serif;
+}
+
+.switchTheme *{
+    transition: .2s;
+}
+
+*::selection {
+    background: #4d84ff;
+    color: #fff;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
