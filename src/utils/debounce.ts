@@ -1,6 +1,11 @@
-type DebouncedFunction<T extends (...args: any) => any> = (...args: Parameters<T>) => void;
+type DebouncedFunction<T extends (...args: any) => any> = (
+  ...args: Parameters<T>
+) => void;
 
-export function debounce<T extends(...args: any) => any>(func: T, timeout: number): DebouncedFunction<T> {
+export function debounce<T extends (...args: any) => any>(
+  func: T,
+  timeout: number
+): DebouncedFunction<T> {
   let timer: NodeJS.Timeout;
 
   return (...args: any[]) => {

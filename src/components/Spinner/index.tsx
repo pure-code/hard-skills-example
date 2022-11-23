@@ -1,6 +1,6 @@
-import { ReactComponent as LoaderIcon } from '../../assets/loader.svg';
+import { ReactComponent as LoaderIcon } from "../../assets/loader.svg";
 
-import { SpinnerContainer, Spin } from './styled';
+import { SpinnerContainer, Spin } from "./styled";
 
 const Spinner = () => (
   <SpinnerContainer>

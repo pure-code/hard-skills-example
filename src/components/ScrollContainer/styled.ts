@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledScrollContainer = styled.div`
   position: relative;
@@ -12,7 +12,7 @@ export const ScrollWrapper = styled.div`
   overflow: auto;
   scrollbar-width: none;
   border-radius: 6px;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }

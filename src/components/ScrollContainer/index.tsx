@@ -1,12 +1,20 @@
 import React, {
-  useCallback, useEffect, useRef, useState, ReactNode,
-} from 'react';
-import useDragAndDrop from '../../hooks/useDragAndDrop';
-import { UseDragDropPropsReturn } from '../../hooks/interfaces';
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  ReactNode,
+} from "react";
+import useDragAndDrop from "../../hooks/useDragAndDrop";
+import { UseDragDropPropsReturn } from "../../hooks/interfaces";
 
-import { StyledScrollContainer, ScrollWrapper, CustomScrollBtn } from './styled';
+import {
+  StyledScrollContainer,
+  ScrollWrapper,
+  CustomScrollBtn,
+} from "./styled";
 
-export interface ScrollContainerProps{
+export interface ScrollContainerProps {
   children: ReactNode;
 }
 
@@ -34,21 +42,24 @@ const ScrollContainer = ({ children }: ScrollContainerProps) => {
     }
   };
 
-  const handleOnCustomScroll = useCallback((
-    { mouseY, shiftY }: UseDragDropPropsReturn,
-  ) => {
-    const translateTo = mouseY - shiftY;
+  const handleOnCustomScroll = useCallback(
+    ({ mouseY, shiftY }: UseDragDropPropsReturn) => {
+      const translateTo = mouseY - shiftY;
 
-    if (
-      scrollBtnRef.current &&
-      scrollContainerRef.current &&
-      translateTo <= (scrollContainerRef?.current?.offsetHeight || 0) - (scrollBtnRef?.current?.offsetHeight || 0) &&
-      translateTo >= 0
-    ) {
-      setScrollBarPosition(translateTo);
-      handleCustomScroll(translateTo);
-    }
-  }, []);
+      if (
+        scrollBtnRef.current &&
+        scrollContainerRef.current &&
+        translateTo <=
+          (scrollContainerRef?.current?.offsetHeight || 0) -
+            (scrollBtnRef?.current?.offsetHeight || 0) &&
+        translateTo >= 0
+      ) {
+        setScrollBarPosition(translateTo);
+        handleCustomScroll(translateTo);
+      }
+    },
+    []
+  );
 
   const { onDragStart } = useDragAndDrop({
     dragItemRef: scrollBtnRef,
@@ -63,9 +74,9 @@ const ScrollContainer = ({ children }: ScrollContainerProps) => {
 
   // TODO прикрутить THROTTLER
   useEffect(() => {
-    window.addEventListener('resize', handleSetScrollBtnHeight);
+    window.addEventListener("resize", handleSetScrollBtnHeight);
 
-    return () => window.removeEventListener('resize', handleSetScrollBtnHeight);
+    return () => window.removeEventListener("resize", handleSetScrollBtnHeight);
   }, []);
 
   useEffect(handleSetScrollBtnHeight);
@@ -76,11 +87,11 @@ const ScrollContainer = ({ children }: ScrollContainerProps) => {
         {children}
       </ScrollWrapper>
       {isVisibleScrollBtn && (
-      <CustomScrollBtn
-        ref={scrollBtnRef}
-        onMouseDown={onDragStart}
-        style={{ top: `${scrollBarPosition}px`, height: scrollBtnHeight }}
-      />
+        <CustomScrollBtn
+          ref={scrollBtnRef}
+          onMouseDown={onDragStart}
+          style={{ top: `${scrollBarPosition}px`, height: scrollBtnHeight }}
+        />
       )}
     </StyledScrollContainer>
   );

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TagsContainer = styled.div`
   display: flex;
@@ -17,9 +17,9 @@ export const TagItem = styled.span`
   padding: 0 6px;
   border-radius: 10px;
   border: 1px solid ${({ theme }) => theme.mainFont};
-  opacity: .6;
+  opacity: 0.6;
 
-  @media(max-width: 1300px){
+  @media (max-width: 1300px) {
     font-size: 10px;
     margin: 0 6px 6px 0;
     padding: 0 4px;

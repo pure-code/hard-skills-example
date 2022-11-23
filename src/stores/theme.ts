@@ -1,4 +1,4 @@
-import { action, makeAutoObservable } from 'mobx';
+import { action, makeAutoObservable } from "mobx";
 
 class Theme {
   constructor() {
@@ -8,10 +8,10 @@ class Theme {
   isDarkTheme = true;
 
   @action toggleTheme = () => {
-    document.body.classList.add('switchTheme');
+    document.body.classList.add("switchTheme");
     this.isDarkTheme = !this.isDarkTheme;
     setTimeout(() => {
-      document.body.classList.remove('switchTheme');
+      document.body.classList.remove("switchTheme");
     }, 200);
   };
 }

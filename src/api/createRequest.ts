@@ -1,6 +1,6 @@
 // export const host = 'https://randomuser.me/'
 
-export const host = 'https://rickandmortyapi.com/api/';
+export const host = "https://rickandmortyapi.com/api/";
 
 const request = (url: string, method: string) =>
   fetch(`${host}${url}`, { method })
@@ -11,4 +11,4 @@ const request = (url: string, method: string) =>
     });
 
 export const GETRequest = <Response>(url: string): Promise<Response> =>
-  request(url, 'GET');
+  request(url, "GET");

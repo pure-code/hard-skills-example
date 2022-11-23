@@ -1,7 +1,7 @@
-import ErrorBoundary from '../ErrorBoundary';
-import { PopupProps } from './interfaces';
+import ErrorBoundary from "../ErrorBoundary";
+import { PopupProps } from "./interfaces";
 
-import { PopupContainer, Overlay, Content } from './styled';
+import { PopupContainer, Overlay, Content } from "./styled";
 
 const Popup = ({ children, onClose }: PopupProps) => (
   <PopupContainer>

@@ -1,5 +1,5 @@
-import { useContext, createContext } from 'react';
-import stores, { AppState } from '../stores';
+import { useContext, createContext } from "react";
+import stores, { AppState } from "../stores";
 
 export const StoreContext = createContext(stores);
 export const { Provider } = StoreContext;

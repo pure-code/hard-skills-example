@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const CandidateItemContainer = styled(Link)`
   position: relative;
@@ -15,20 +15,20 @@ export const CandidateItemContainer = styled(Link)`
   color: inherit;
   text-decoration: none;
 
-  @media(max-width: 1300px){
+  @media (max-width: 1300px) {
     min-height: 90px;
     padding: 10px 0 4px 10px;
   }
-  
-  &.moved{
+
+  &.moved {
     cursor: grabbing;
   }
 
-  &:active{
+  &:active {
     border: 1px solid;
   }
 
-  &:focus{
+  &:focus {
     border: 1px solid;
   }
 `;
@@ -48,7 +48,7 @@ export const MoreBtn = styled.button`
   outline: none;
   cursor: pointer;
 
-  i{
+  i {
     display: block;
     width: 4px;
     height: 4px;
@@ -62,7 +62,7 @@ export const Name = styled.span`
   display: block;
   font-size: 16px;
 
-  @media(max-width: 1300px){
+  @media (max-width: 1300px) {
     font-size: 14px;
   }
 `;
@@ -74,12 +74,12 @@ export const Avatar = styled.div`
   border-radius: 50%;
   margin: 0 10px 0 0;
 
-  @media(max-width: 1300px){
+  @media (max-width: 1300px) {
     width: 44px;
     height: 44px;
   }
-  
-  img{
+
+  img {
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -95,10 +95,10 @@ export const Grade = styled.span`
   display: flex;
   font-size: 14px;
   font-weight: 600;
-  opacity: .7;
+  opacity: 0.7;
   margin: 6px 0 0 0;
 
-  @media(max-width: 1300px){
+  @media (max-width: 1300px) {
     font-size: 12px;
     margin: 2px 0 0 0;
   }

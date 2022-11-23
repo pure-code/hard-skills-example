@@ -1,6 +1,6 @@
-import { Component, ReactNode } from 'react';
+import { Component, ReactNode } from "react";
 
-class ErrorBoundary extends Component<{children: ReactNode;}> {
+class ErrorBoundary extends Component<{ children: ReactNode }> {
   state = { hasError: false };
 
   static getDerivedStateFromError() {
@@ -14,7 +14,9 @@ class ErrorBoundary extends Component<{children: ReactNode;}> {
       return (
         <>
           <h1>Что-то пошло не так.</h1>
-          <button type="button" onClick={() => window.location.reload()}>Обновить страницу</button>
+          <button type="button" onClick={() => window.location.reload()}>
+            Обновить страницу
+          </button>
         </>
       );
     }

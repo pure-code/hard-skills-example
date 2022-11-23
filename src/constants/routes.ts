@@ -1,5 +1,5 @@
-export enum ROUTES{
-  DASHBOARD = '/dashboard',
-  BOARD = '/board',
-  LOGIN = '/login',
+export enum ROUTES {
+  DASHBOARD = "/dashboard",
+  BOARD = "/board",
+  LOGIN = "/login",
 }

@@ -1,16 +1,12 @@
-import {
-  TagItem, TagsContainer,
-} from './styled';
+import { TagItem, TagsContainer } from "./styled";
 
-export interface TagsProps{
+export interface TagsProps {
   tags: string;
 }
 
 const Tags = ({ tags }: TagsProps) => (
   <TagsContainer>
-    {tags.split(',').map((el) => el && (
-      <TagItem key={el}>{el}</TagItem>
-    ))}
+    {tags.split(",").map((el) => el && <TagItem key={el}>{el}</TagItem>)}
   </TagsContainer>
 );
 

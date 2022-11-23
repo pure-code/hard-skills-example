@@ -1,8 +1,8 @@
-import { MutableRefObject } from 'react';
+import { MutableRefObject } from "react";
 
-export type DOMRectProps = Pick<DOMRect, 'top' | 'left'>;
+export type DOMRectProps = Pick<DOMRect, "top" | "left">;
 
-export interface UseDragDropPropsReturn{
+export interface UseDragDropPropsReturn {
   mouseX: number;
   mouseY: number;
   translateX: number;
@@ -14,7 +14,7 @@ export interface UseDragDropPropsReturn{
   dragItem: HTMLElement;
 }
 
-export interface UseDragDropProps{
+export interface UseDragDropProps {
   onDrop?: (dropZone: Element | null) => void;
   handleOnItemMove: (props: UseDragDropPropsReturn) => void;
   dragItemRef: MutableRefObject<HTMLElement | null>;

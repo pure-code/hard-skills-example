@@ -1,22 +1,28 @@
-import { ChangeEvent, useState } from 'react';
-import { FieldProps } from './interfaces';
+import { ChangeEvent, useState } from "react";
+import { FieldProps } from "./interfaces";
 
-import {
-  FieldContainer, CommentField,
-} from './styled';
+import { FieldContainer, CommentField } from "./styled";
 
 const Field = ({
-  onChange, placeholder, initialValue, type, name, required, error,
+  onChange,
+  placeholder,
+  initialValue,
+  type,
+  name,
+  required,
+  error,
 }: FieldProps) => {
-  const [fieldValue, setFieldValue] = useState(initialValue || '');
+  const [fieldValue, setFieldValue] = useState(initialValue || "");
 
-  const handleSetFieldValue = (ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleSetFieldValue = (
+    ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value } = ev.target;
     setFieldValue(value);
     onChange(name, value);
   };
 
-  if (type === 'textarea') {
+  if (type === "textarea") {
     return (
       <CommentField
         error={!!error && !!required && !fieldValue}
