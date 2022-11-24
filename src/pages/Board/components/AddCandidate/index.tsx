@@ -26,10 +26,13 @@ const fields: FieldItem[] = [
 
 const AddCandidate = ({ onCreate }: AddCandidateProps) => {
   const {
-    jobs: { addCandidate, job },
+    vacancies: {
+      addCandidate,
+      selectedVacancy: { _id },
+    },
   } = useStore();
   const [newCandidate, setNewCandidate] = useState<Candidate>(
-    initialCandidate(job?.id || "")
+    initialCandidate(_id)
   );
   const isError = !newCandidate.name || !newCandidate.grade;
 

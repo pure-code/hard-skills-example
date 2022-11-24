@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { useParams, useNavigate } from "react-router";
 import { CSSTransition } from "react-transition-group";
@@ -7,7 +7,7 @@ import CandidateItem from "../CandidateItem";
 import ScrollContainer from "../../../../components/ScrollContainer";
 import Header from "../Header";
 import { useCandidateManager } from "./hooks/useCandidateManager";
-import { Candidate } from "../../../../types";
+import { Candidate, RouteParams } from "../../../../types";
 import CandidatePreview from "../CandidatePreview";
 import Popup from "../../../../components/Popup";
 import ColumnHeading from "../ColumnHeading";
@@ -21,14 +21,16 @@ import {
   ColumnList,
 } from "./styled";
 
-type RouteParams = {
-  candidateId?: string;
-};
 const Candidates = () => {
   const {
-    jobs: { job, candidates, searchQuery, isFetchingCandidates },
+    vacancies: {
+      selectedVacancy: { name: vacancyName, columns },
+      searchQuery,
+      isFetchingCandidates,
+      fetchVacancyById,
+    },
   } = useStore();
-  const { candidateId = "" } = useParams<RouteParams>();
+  const { vacancyId, candidateId } = useParams<RouteParams>();
   const allColumns = useRef<HTMLDivElement[] | null[]>([]);
   const { handleMoveCandidate, handleOnItemMove } = useCandidateManager(
     allColumns.current
@@ -43,12 +45,18 @@ const Candidates = () => {
         .includes(searchQuery.toLowerCase())
     );
 
+  useEffect(() => {
+    if (vacancyId) {
+      fetchVacancyById(vacancyId);
+    }
+  }, [vacancyId]);
+
   return (
     <CandidatesContainer>
-      <Header title={job?.name || ""} />
+      <Header title={vacancyName || ""} />
       <ColumnList>
         {isFetchingCandidates && <Spinner />}
-        {candidates.map(({ title: groupTitle, type, list }, columnIndex) => (
+        {columns.map(({ title: groupTitle, type, list }, columnIndex) => (
           <ColumnContainer color={GROUP_COLORS[type]} key={type}>
             <ColumnHeading title={groupTitle} type={type} count={list.length} />
             <ScrollContainer>
@@ -60,10 +68,10 @@ const Candidates = () => {
                 {!isFetchingCandidates &&
                   getFilteredList(list).map((candidate) => (
                     <CandidateItem
-                      key={candidate.id}
+                      key={candidate._id}
                       item={candidate}
                       onItemMove={handleOnItemMove}
-                      onDrop={handleMoveCandidate(columnIndex, candidate.id)}
+                      onDrop={handleMoveCandidate(columnIndex, candidate._id)}
                     />
                   ))}
               </CandidatesList>
@@ -78,7 +86,7 @@ const Candidates = () => {
         unmountOnExit
       >
         <Popup onClose={closePreview}>
-          <CandidatePreview candidateId={candidateId} />
+          <CandidatePreview />
         </Popup>
       </CSSTransition>
     </CandidatesContainer>

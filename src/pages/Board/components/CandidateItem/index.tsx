@@ -11,7 +11,7 @@ import { Avatar, CandidateItemContainer, Grade, Info, Name } from "./styled";
 const CandidateItem = ({ item, onDrop, onItemMove }: CandidateItemProps) => {
   const { dragItemRef, handleOnItemMove, handleOnDrop, isDragging } =
     useCandidateItemManager({ onDrop, onItemMove });
-  const { id, jobId, name, grade, tags, avatar } = item;
+  const { _id, vacancyId, name, grade, tags, avatar } = item;
   const { onDragStart } = useDragAndDrop({
     onDrop: handleOnDrop,
     dragItemRef,
@@ -20,7 +20,7 @@ const CandidateItem = ({ item, onDrop, onItemMove }: CandidateItemProps) => {
 
   return (
     <CandidateItemContainer
-      to={`${ROUTES.BOARD}/${jobId}/${id}`}
+      to={`${ROUTES.BOARD}/${vacancyId}/${_id}`}
       ref={dragItemRef}
       onMouseDown={onDragStart}
       onTouchStart={onDragStart}

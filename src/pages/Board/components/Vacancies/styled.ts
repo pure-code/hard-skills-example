@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
 
-export const JobsContainer = styled.div`
+export const VacanciesContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ export const JobsContainer = styled.div`
   }
 `;
 
-export const JobHeader = styled.div`
+export const VacancyHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,7 +32,7 @@ export const JobHeader = styled.div`
   }
 `;
 
-export const AddJobBtn = styled.button`
+export const AddVacancyBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +47,7 @@ export const AddJobBtn = styled.button`
   font-size: 24px;
 `;
 
-export const JobList = styled.div`
+export const VacancyList = styled.div`
   @media (max-width: 1200px) {
     display: flex;
     border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
@@ -55,7 +55,7 @@ export const JobList = styled.div`
   }
 `;
 
-export const JobItem = styled(Link)<{ selected: boolean }>`
+export const VacancyItem = styled(Link)<{ selected: boolean }>`
   display: block;
   padding: 11px 16px;
   text-decoration: none;
@@ -83,7 +83,7 @@ export const JobItem = styled(Link)<{ selected: boolean }>`
   }
 `;
 
-export const JobTitle = styled.span`
+export const VacancyTitle = styled.span`
   display: block;
   font-size: 14px;
   text-overflow: ellipsis;
@@ -93,16 +93,6 @@ export const JobTitle = styled.span`
 
   @media (max-width: 1300px) {
     font-size: 13px;
-  }
-
-  i {
-    font-style: normal;
-    font-size: 11px;
-    opacity: 0.5;
-
-    @media (max-width: 1200px) {
-      display: none;
-    }
   }
 `;
 

@@ -16,7 +16,7 @@ export interface HeaderProps {
 
 const Header = ({ title }: HeaderProps) => {
   const {
-    jobs: { setSearchQuery },
+    vacancies: { setSearchQuery },
   } = useStore();
   const [isOpenCreateCandidateForm, setIsOpenCreateCandidateForm] =
     useState(false);

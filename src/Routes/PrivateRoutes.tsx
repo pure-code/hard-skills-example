@@ -19,7 +19,7 @@ const PrivateRoutes = () => (
         }
       />
       <Route
-        path={`${ROUTES.BOARD}/:jobId`}
+        path={`${ROUTES.BOARD}/:vacancyId`}
         element={
           <ErrorBoundary>
             <Board />
@@ -27,14 +27,14 @@ const PrivateRoutes = () => (
         }
       />
       <Route
-        path={`${ROUTES.BOARD}/:jobId/:candidateId`}
+        path={`${ROUTES.BOARD}/:vacancyId/:candidateId`}
         element={
           <ErrorBoundary>
             <Board />
           </ErrorBoundary>
         }
       />
-      <Route path="*" element={<Navigate to={`${ROUTES.BOARD}/job1`} />} />
+      <Route path="*" element={<Navigate to={`${ROUTES.BOARD}`} />} />
     </Routes>
   </Suspense>
 );

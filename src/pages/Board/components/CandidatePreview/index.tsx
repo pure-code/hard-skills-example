@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useStore } from "../../../../hooks/useStore";
-import { Candidate } from "../../../../types";
+import { Candidate, RouteParams } from "../../../../types";
 import Tags from "../../../../components/Tags";
 import { initialCandidate } from "../../../../stores/initialData";
 import { ReactComponent as DeleteIcon } from "../../../../assets/delete.svg";
@@ -15,27 +15,25 @@ import {
   Delete,
 } from "./styled";
 
-export interface CandidatePreviewProps {
-  candidateId: string;
-}
-
-const CandidatePreview = ({ candidateId }: CandidatePreviewProps) => {
+const CandidatePreview = () => {
   const {
-    jobs: { getCandidateById, deleteCandidate },
+    vacancies: { getCandidateById, deleteCandidate },
   } = useStore();
   const [candidate, setCandidate] = useState<Candidate | null>(null);
-  const { id, name, grade, link, contact, comment, tags, avatar } =
+  const { _id, name, grade, link, contact, comment, tags, avatar } =
     candidate || initialCandidate("");
-
+  const { candidateId } = useParams<RouteParams>();
   const navigate = useNavigate();
 
   const handleDeleteCandidate = () => {
-    deleteCandidate(id);
+    deleteCandidate(_id);
     navigate(-1);
   };
 
   useEffect(() => {
-    setCandidate(getCandidateById(candidateId));
+    if (candidateId) {
+      setCandidate(getCandidateById(candidateId));
+    }
   }, []);
 
   return (

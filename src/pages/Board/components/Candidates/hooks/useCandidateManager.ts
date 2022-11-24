@@ -4,7 +4,7 @@ import { useStore } from "../../../../../hooks/useStore";
 
 export const useCandidateManager = (allColumns: HTMLDivElement[] | null[]) => {
   const {
-    jobs: { moveCandidate },
+    vacancies: { moveCandidate },
   } = useStore();
 
   const moveElIndex = useRef(-1);
