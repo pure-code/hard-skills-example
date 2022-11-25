@@ -1,5 +1,6 @@
 body {
     font: 400 16px Nunito, sans-serif;
+    background: #28282c;
 }
 
 .switchTheme *{

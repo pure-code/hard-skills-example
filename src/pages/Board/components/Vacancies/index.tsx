@@ -5,19 +5,21 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../hooks/useStore";
 import { ROUTES } from "../../../../constants/routes";
 import Popup from "../../../../components/Popup";
-import AddVacancy from "../AddVacancy";
+import Logo from "../../../../components/Logo";
+import AddVacancyForm from "../AddVacancyForm";
 import { RouteParams } from "../../../../types";
 import { ReactComponent as DayIcon } from "../../../../assets/day.svg";
 import { ReactComponent as NightIcon } from "../../../../assets/night.svg";
 
 import {
   AddVacancyBtn,
-  VacancyHeader,
+  VacanciesHeader,
   VacancyItem,
   VacancyList,
   VacanciesContainer,
   VacancyTitle,
   ThemeToggle,
+  AddVacancyWrap,
 } from "./styled";
 
 const Vacancies = () => {
@@ -26,7 +28,7 @@ const Vacancies = () => {
     theme: { toggleTheme, isDarkTheme },
   } = useStore();
   const [showAddVacancyPopup, setShowAddVacancyPopup] = useState(false);
-  const { vacancyId = "" } = useParams<RouteParams>();
+  const { vacancyId } = useParams<RouteParams>();
 
   const handleSetShowAddVacancyPopup = () =>
     setShowAddVacancyPopup((prevState) => !prevState);
@@ -37,10 +39,13 @@ const Vacancies = () => {
 
   return (
     <VacanciesContainer>
-      <VacancyHeader>
+      <VacanciesHeader>
+        <Logo />
+      </VacanciesHeader>
+      <AddVacancyWrap>
         <span>Вакансии</span>
         <AddVacancyBtn onClick={handleSetShowAddVacancyPopup}>+</AddVacancyBtn>
-      </VacancyHeader>
+      </AddVacancyWrap>
       <VacancyList>
         {vacanciesList.map(({ _id, name }) => (
           <VacancyItem
@@ -62,7 +67,11 @@ const Vacancies = () => {
         unmountOnExit
       >
         <Popup onClose={handleSetShowAddVacancyPopup}>
-          <AddVacancy onCreate={handleSetShowAddVacancyPopup} />
+          <AddVacancyForm
+            isEdit={false}
+            onSubmit={handleSetShowAddVacancyPopup}
+            heading="Добавить новую вакансию"
+          />
         </Popup>
       </CSSTransition>
     </VacanciesContainer>

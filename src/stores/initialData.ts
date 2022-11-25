@@ -1,4 +1,4 @@
-import { Candidate, Vacancy } from "../types";
+import { Candidate, Vacancy, VacancyInfo } from "../types";
 
 export const initialCandidate = (vacancyId: string): Candidate => ({
   _id: "",
@@ -6,7 +6,6 @@ export const initialCandidate = (vacancyId: string): Candidate => ({
   vacancyId,
   name: "",
   grade: "",
-  avatar: "",
   comment: "",
   contact: "",
   link: "",
@@ -21,6 +20,11 @@ export const initialVacancy = (): Vacancy => ({
   link: "",
   columns: [],
   createdAt: 0,
+});
+
+export const initialVacancyInfo = (): VacancyInfo => ({
+  ...initialVacancy(),
+  columns: [],
 });
 
 // export const demoVacancies: Vacancy[] = [

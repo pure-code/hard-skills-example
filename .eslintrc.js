@@ -3,7 +3,11 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["airbnb", "plugin:prettier/recommended"],
+  extends: [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -18,6 +22,7 @@ module.exports = {
   plugins: ["react", "@typescript-eslint"],
   rules: {
     "no-unused-vars": "off",
+    "prettier/prettier": 0,
     "@typescript-eslint/no-unused-vars": "error",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],

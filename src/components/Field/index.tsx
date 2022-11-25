@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FieldProps } from "./interfaces";
 
 import { FieldContainer, CommentField } from "./styled";
@@ -32,6 +32,12 @@ const Field = ({
       />
     );
   }
+
+  useEffect(() => {
+    if (initialValue) {
+      setFieldValue(initialValue);
+    }
+  }, [initialValue]);
 
   return (
     <FieldContainer

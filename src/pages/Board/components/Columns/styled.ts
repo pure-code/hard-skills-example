@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
 import { CandidateItemContainer } from "../CandidateItem/styled";
 
-export const CandidatesContainer = styled.div`
+export const ColumnsContainer = styled.div`
   flex-basis: 100%;
 `;
 

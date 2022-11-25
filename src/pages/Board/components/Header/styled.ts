@@ -61,3 +61,35 @@ export const AddCandidateBtn = styled.button`
     }
   }
 `;
+
+export const DeleteVacancyBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 13px;
+  font-size: 13px;
+  color: #fff;
+  background: ${({ theme }) => (theme.dark ? theme.cardBg : theme.listBg)};
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 20px;
+  cursor: pointer;
+
+  svg {
+    height: 16px;
+    fill: ${({ theme }) => theme.mainFont};
+  }
+`;
+
+export const EditVacancyBtn = styled(DeleteVacancyBtn)`
+  margin: 0 10px 0 20px;
+
+  @media (max-width: 767px) {
+    margin: 0 10px 0 0;
+  }
+`;

@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import Vacancies from "./components/Vacancies";
-import Candidates from "./components/Candidates";
+import Columns from "./components/Columns";
 import { BoardContainer } from "./styled";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import { RouteParams } from "../../types";
@@ -15,7 +15,7 @@ const Board = () => {
       </ErrorBoundary>
       {vacancyId && (
         <ErrorBoundary>
-          <Candidates />
+          <Columns />
         </ErrorBoundary>
       )}
     </BoardContainer>

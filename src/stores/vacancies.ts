@@ -1,41 +1,33 @@
-import { action, computed, makeAutoObservable } from "mobx";
-import { Candidate, Vacancy, Stages } from "../types";
+import { action, makeAutoObservable, runInAction } from "mobx";
+import { Vacancy, VacancyInfoList, VacancyInfo } from "../types";
+import { initialVacancy } from "./initialData";
 import {
   createVacancy,
+  deleteVacancyById,
   getVacanciesList,
   getVacancyById,
-} from "../api/vacancies";
-import { initialVacancy } from "./initialData";
-import { createCandidate } from "../api";
+  updateVacancy,
+} from "../api";
 
 class Vacancies {
   constructor() {
     makeAutoObservable(this);
   }
 
-  vacanciesList: Vacancy[] = [];
+  vacanciesList: VacancyInfoList = [];
 
-  isFetchingCandidates = true;
+  isFetchingVacancies = true;
 
-  selectedVacancy: Vacancy = initialVacancy();
+  selectedVacancy = initialVacancy();
 
-  searchQuery = "";
-
-  @action addVacancy = (newVacancy: Vacancy) => {
-    this.vacanciesList.push(newVacancy);
-
+  @action addVacancy = (newVacancy: VacancyInfo) => {
     return createVacancy(newVacancy).then((vacancy) => {
+      runInAction(() => {
+        this.vacanciesList.push(vacancy);
+      });
       return vacancy;
     });
   };
-
-  @action setSearchQuery = (query: string) => {
-    this.searchQuery = query;
-  };
-
-  @computed get candidates() {
-    return this.selectedVacancy?.columns || [];
-  }
 
   @action setSelectedVacancy = (vacancy: Vacancy) => {
     this.selectedVacancy = vacancy;
@@ -56,58 +48,33 @@ class Vacancies {
       .finally(() => this.setIsFetchingVacancies(false));
   };
 
-  @action setVacanciesList = (list: Vacancy[]) => {
+  @action setVacanciesList = (list: VacancyInfoList) => {
     this.vacanciesList = list;
   };
 
   @action setIsFetchingVacancies = (value: boolean) => {
-    this.isFetchingCandidates = value;
+    this.isFetchingVacancies = value;
   };
 
-  @action getCandidateById = (candidateId: string) => {
-    let candidate = null;
-    this.candidates.forEach((item) => {
-      item.list.forEach((el) => {
-        if (el._id === candidateId) {
-          candidate = el;
-        }
+  @action deleteVacancy = (id: string) =>
+    deleteVacancyById(id).then(() => {
+      this.setSelectedVacancy(initialVacancy());
+      this.setVacanciesList(this.vacanciesList.filter((el) => el._id !== id));
+    });
+
+  @action updateVacancy = (vacancy: VacancyInfo) =>
+    updateVacancy(vacancy).then(() => {
+      runInAction(() => {
+        this.vacanciesList.forEach((el) => {
+          if (el._id === vacancy._id) {
+            this.selectedVacancy.name = vacancy.name;
+            this.selectedVacancy.link = vacancy.link;
+            el.name = vacancy.name;
+            el.link = vacancy.link;
+          }
+        });
       });
     });
-    return candidate;
-  };
-
-  @action addCandidate = (newCandidate: Candidate) => {
-    createCandidate(newCandidate).then((candidate) => {
-      this.candidates
-        .find((el) => el.type === Stages.new)
-        ?.list.unshift(candidate);
-    });
-  };
-
-  @action deleteCandidate = (id: string) => {
-    this.selectedVacancy.columns.forEach((item) => {
-      item.list = item.list.filter((el) => el._id !== id);
-    });
-  };
-
-  @action moveCandidate = (
-    id: string,
-    targetColumn: number,
-    currentColumn: number,
-    position: number
-  ) => {
-    const targetCandidate = this.candidates[currentColumn].list.find(
-      (el) => el._id === id
-    );
-    if (targetCandidate) {
-      this.candidates[currentColumn].list = this.candidates[
-        currentColumn
-      ].list.filter((el) => el._id !== id);
-      this.candidates[targetColumn].list.splice(position, 0, {
-        ...targetCandidate,
-      });
-    }
-  };
 }
 
 export default new Vacancies();

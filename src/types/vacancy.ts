@@ -10,7 +10,6 @@ export interface Candidate {
   userId: string;
   vacancyId: string;
   name: string;
-  avatar: string;
   grade: string;
   comment: string;
   tags: string;
@@ -37,7 +36,20 @@ export interface Vacancy {
   createdAt: number;
 }
 
+export interface VacancyInfo extends Omit<Vacancy, "columns"> {
+  columns: string[];
+}
+
+export type VacancyInfoList = VacancyInfo[];
+
 export type RouteParams = {
   vacancyId?: string;
   candidateId?: string;
 };
+
+export interface MoveCandidate {
+  currentColumnId: string;
+  candidateId: string;
+  newColumnId: string;
+  newPosition: number;
+}

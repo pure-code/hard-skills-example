@@ -54,7 +54,7 @@ export const MoreBtn = styled.button`
     height: 4px;
     background: ${({ theme }) => theme.mainFont};
     border-radius: 50%;
-    margin: 0 0 3px 0;
+    margin: 0 0 2px 0;
   }
 `;
 
@@ -64,25 +64,6 @@ export const Name = styled.span`
 
   @media (max-width: 1300px) {
     font-size: 14px;
-  }
-`;
-
-export const Avatar = styled.div`
-  width: 60px;
-  height: 60px;
-  overflow: hidden;
-  border-radius: 50%;
-  margin: 0 10px 0 0;
-
-  @media (max-width: 1300px) {
-    width: 44px;
-    height: 44px;
-  }
-
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
   }
 `;
 

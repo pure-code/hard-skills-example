@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useParams, useNavigate } from "react-router";
 import { CSSTransition } from "react-transition-group";
@@ -12,31 +12,39 @@ import CandidatePreview from "../CandidatePreview";
 import Popup from "../../../../components/Popup";
 import ColumnHeading from "../ColumnHeading";
 import { GROUP_COLORS } from "../../../../constants/colors";
-import Spinner from "../../../../components/Spinner";
+import AddCandidateForm from "../AddCandidateForm";
 
 import {
   ColumnContainer,
   CandidatesList,
-  CandidatesContainer,
+  ColumnsContainer,
   ColumnList,
 } from "./styled";
 
-const Candidates = () => {
+const Columns = () => {
   const {
     vacancies: {
       selectedVacancy: { name: vacancyName, columns },
-      searchQuery,
-      isFetchingCandidates,
       fetchVacancyById,
     },
+    candidates: { searchQuery, setSelectedCandidateId },
   } = useStore();
   const { vacancyId, candidateId } = useParams<RouteParams>();
+  const [isEdit, setIsEdit] = useState(false);
   const allColumns = useRef<HTMLDivElement[] | null[]>([]);
   const { handleMoveCandidate, handleOnItemMove } = useCandidateManager(
     allColumns.current
   );
   const navigate = useNavigate();
-  const closePreview = () => navigate(-1);
+  const closePreview = () => {
+    if (isEdit) {
+      setIsEdit(false);
+      return;
+    }
+    navigate(-1);
+  };
+
+  const handleSetIsEdit = () => setIsEdit((prevState) => !prevState);
 
   const getFilteredList = (list: Candidate[]) =>
     list.filter(({ name, tags, grade }) =>
@@ -51,11 +59,15 @@ const Candidates = () => {
     }
   }, [vacancyId]);
 
+  useEffect(() => {
+    setSelectedCandidateId(candidateId || "");
+    return () => setSelectedCandidateId("");
+  }, [candidateId]);
+
   return (
-    <CandidatesContainer>
-      <Header title={vacancyName || ""} />
+    <ColumnsContainer>
+      <Header title={vacancyName} />
       <ColumnList>
-        {isFetchingCandidates && <Spinner />}
         {columns.map(({ title: groupTitle, type, list }, columnIndex) => (
           <ColumnContainer color={GROUP_COLORS[type]} key={type}>
             <ColumnHeading title={groupTitle} type={type} count={list.length} />
@@ -65,15 +77,14 @@ const Candidates = () => {
                   allColumns.current[columnIndex] = r;
                 }}
               >
-                {!isFetchingCandidates &&
-                  getFilteredList(list).map((candidate) => (
-                    <CandidateItem
-                      key={candidate._id}
-                      item={candidate}
-                      onItemMove={handleOnItemMove}
-                      onDrop={handleMoveCandidate(columnIndex, candidate._id)}
-                    />
-                  ))}
+                {getFilteredList(list).map((candidate) => (
+                  <CandidateItem
+                    key={candidate._id}
+                    item={candidate}
+                    onItemMove={handleOnItemMove}
+                    onDrop={handleMoveCandidate(columnIndex, candidate._id)}
+                  />
+                ))}
               </CandidatesList>
             </ScrollContainer>
           </ColumnContainer>
@@ -86,11 +97,19 @@ const Candidates = () => {
         unmountOnExit
       >
         <Popup onClose={closePreview}>
-          <CandidatePreview />
+          {isEdit ? (
+            <AddCandidateForm
+              heading="Редактировать кандидата"
+              isEdit={isEdit}
+              onSubmit={handleSetIsEdit}
+            />
+          ) : (
+            <CandidatePreview onEdit={handleSetIsEdit} />
+          )}
         </Popup>
       </CSSTransition>
-    </CandidatesContainer>
+    </ColumnsContainer>
   );
 };
 
-export default observer(Candidates);
+export default observer(Columns);

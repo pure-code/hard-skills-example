@@ -1,15 +1,14 @@
-// const API_TOKEN = () => localStorage.getItem("api_token");
-const apiToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ0ZXN0QHRlc3QucnUiLCJfaWQiOiI2MzdlNDIwZmFiYTk3NmI0NGFhZDAyMjYiLCJpYXQiOjE2NjkyMTg4NTAsImV4cCI6MTY3MTgxMDg1MH0.6vvkJmMC7EUa2kJYk6axTbqTSSVTqotSbn7_-dl9nrc";
+const API_TOKEN = () => localStorage.getItem("api_token");
+
 const host =
   process.env.NODE_ENV === "development" ? "http://localhost:8080" : "";
 
 const getInitParam = (data: any, method: string) => {
-  // RequestInit
-  const params: any = {
+  // eslint-disable-next-line no-undef
+  const params: RequestInit = {
     method,
     headers: {
-      Authorization: `Bearer ${apiToken}`,
+      Authorization: `Bearer ${API_TOKEN()}`,
       "Content-Type": "application/json",
     },
   };
@@ -23,16 +22,16 @@ const getInitParam = (data: any, method: string) => {
 
 const REQUEST = (url: string, method: string, data?: any) =>
   fetch(`${host}${url}`, getInitParam(data, method))
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw res.json();
+      }
+      return res.json();
+    })
     .then((response) => {
       if (response.error) {
         throw response;
       }
-
-      if (response.statusCode === 429) {
-        throw response;
-      }
-
       return response;
     })
     .catch((err) => {

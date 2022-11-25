@@ -6,18 +6,18 @@ import { ROUTES } from "../../../../constants/routes";
 import Tags from "../../../../components/Tags";
 import { CandidateItemProps } from "./interfaces";
 
-import { Avatar, CandidateItemContainer, Grade, Info, Name } from "./styled";
+import { CandidateItemContainer, Grade, Info, MoreBtn, Name } from "./styled";
 
 const CandidateItem = ({ item, onDrop, onItemMove }: CandidateItemProps) => {
   const { dragItemRef, handleOnItemMove, handleOnDrop, isDragging } =
     useCandidateItemManager({ onDrop, onItemMove });
-  const { _id, vacancyId, name, grade, tags, avatar } = item;
+  const { _id, vacancyId, name, grade, tags } = item;
   const { onDragStart } = useDragAndDrop({
     onDrop: handleOnDrop,
     dragItemRef,
     handleOnItemMove,
   });
-
+  // TODO Переделать получение ссылки на dragItem, иначе ссылки на каждый элемент хранятся
   return (
     <CandidateItemContainer
       to={`${ROUTES.BOARD}/${vacancyId}/${_id}`}
@@ -34,15 +34,17 @@ const CandidateItem = ({ item, onDrop, onItemMove }: CandidateItemProps) => {
       tabIndex={0}
     >
       <Info>
-        <Avatar>
-          <img draggable={false} src={avatar} alt="" />
-        </Avatar>
         <div>
           <Name>{name}</Name>
           <Grade>{grade}</Grade>
         </div>
       </Info>
       <Tags tags={tags} />
+      <MoreBtn>
+        <i />
+        <i />
+        <i />
+      </MoreBtn>
     </CandidateItemContainer>
   );
 };

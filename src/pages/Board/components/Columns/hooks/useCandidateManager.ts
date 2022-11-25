@@ -4,7 +4,7 @@ import { useStore } from "../../../../../hooks/useStore";
 
 export const useCandidateManager = (allColumns: HTMLDivElement[] | null[]) => {
   const {
-    vacancies: { moveCandidate },
+    candidates: { moveCandidate },
   } = useStore();
 
   const moveElIndex = useRef(-1);
@@ -44,23 +44,24 @@ export const useCandidateManager = (allColumns: HTMLDivElement[] | null[]) => {
   );
 
   const handleMoveCandidate = useCallback(
-    (currentColumnIndex: number, id: string) => (dropZone: Element | null) => {
-      allColumns.forEach((el, targetColumnIndex) => {
-        lastHoveredEl.current?.classList.remove("hoveredCandidate");
-        if (
-          el &&
-          (el === dropZone || el.contains(dropZone)) &&
-          moveElIndex.current !== -1
-        ) {
-          moveCandidate(
-            id,
-            targetColumnIndex,
-            currentColumnIndex,
-            moveElIndex.current
-          );
-        }
-      });
-    },
+    (currentColumnIndex: number, candidateId: string) =>
+      (dropZone: Element | null) => {
+        allColumns.forEach((el, targetColumnIndex) => {
+          lastHoveredEl.current?.classList.remove("hoveredCandidate");
+          if (
+            el &&
+            (el === dropZone || el.contains(dropZone)) &&
+            moveElIndex.current !== -1
+          ) {
+            moveCandidate({
+              candidateId,
+              targetColumnIndex,
+              currentColumnIndex,
+              newPosition: moveElIndex.current,
+            });
+          }
+        });
+      },
     []
   );
 
