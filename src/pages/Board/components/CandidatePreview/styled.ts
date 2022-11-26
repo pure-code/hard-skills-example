@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CandidatePreviewContainer = styled.div`
   display: flex;
-  align-items: center;
+  min-height: 300px;
   padding: 30px;
   background: ${({ theme }) => theme.mainBg};
   border-radius: 6px;
@@ -15,27 +15,7 @@ export const CandidatePreviewContainer = styled.div`
   }
 `;
 
-export const Avatar = styled.div`
-  width: 260px;
-  height: 260px;
-  border-radius: 6px;
-  overflow: hidden;
-
-  @media (max-width: 1000px) {
-    width: 100%;
-    height: 240px;
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
 export const Info = styled.div`
-  margin: 0 0 0 30px;
-
   @media (max-width: 1000px) {
     margin: 20px 0 0 0;
   }
@@ -46,6 +26,7 @@ export const Name = styled.span`
   font-size: 24px;
   font-weight: 600;
   margin: 0 0 10px 0;
+  min-height: 32px;
 
   @media (max-width: 1000px) {
     font-size: 18px;
@@ -55,9 +36,13 @@ export const Name = styled.span`
 
 export const Title = styled.span`
   display: block;
+  min-height: 22px;
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 16px;
   margin: 0 0 10px 0;
-  opacity: 0.8;
 
   @media (max-width: 1000px) {
     font-size: 14px;
@@ -65,11 +50,21 @@ export const Title = styled.span`
   }
 `;
 
+export const Comment = styled.span``;
+
+export const ControlsWrap = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 20px 0 0 0;
+  padding-top: 20px;
+  border-top: 1px solid ${({ theme }) => theme.mainBorder};
+`;
+
 export const Delete = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 240px;
+  width: 160px;
   height: 40px;
   background: ${({ theme }) => theme.mainRed};
   color: #fff;
@@ -77,11 +72,20 @@ export const Delete = styled.button`
   border: none;
   outline: none;
   border-radius: 6px;
-  margin: 20px 0 0 0;
+  margin: 0;
   cursor: pointer;
+  padding: 0;
 
   svg {
+    height: 20px;
     fill: #fff;
     margin: 0 10px 0 0;
   }
+`;
+
+export const Edit = styled(Delete)`
+  width: 300px;
+  background: ${({ theme }) => (theme.dark ? theme.cardBg : theme.listBg)};
+  margin: 0 20px 0 0;
+  color: inherit;
 `;

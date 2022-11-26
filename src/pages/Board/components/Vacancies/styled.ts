@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
 
-export const JobsContainer = styled.div`
+export const VacanciesContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 14vw;
+  width: 13vw;
   max-width: 240px;
   height: 100vh;
   border-right: 1px solid ${({ theme }) => theme.mainBorder};
@@ -18,36 +18,45 @@ export const JobsContainer = styled.div`
   }
 `;
 
-export const JobHeader = styled.div`
+export const VacanciesHeader = styled.div`
+  display: flex;
+  align-items: center;
+  height: ${HEADER_HEIGHT}px;
+  padding: 0 20px;
+  border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
+`;
+
+export const AddVacancyWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: ${HEADER_HEIGHT}px;
-  padding: 0 16px;
+  height: 58px;
+  padding: 0 20px;
   border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
 
   span {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
   }
 `;
 
-export const AddJobBtn = styled.button`
+export const AddVacancyBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   background: ${({ theme }) => theme.mainBlue};
   border: none;
   border-radius: 6px;
   cursor: pointer;
   color: #fff;
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: 600;
+  font-size: 22px;
+  padding: 0 1px 0 0;
 `;
 
-export const JobList = styled.div`
+export const VacancyList = styled.div`
   @media (max-width: 1200px) {
     display: flex;
     border-bottom: 1px solid ${({ theme }) => theme.mainBorder};
@@ -55,11 +64,13 @@ export const JobList = styled.div`
   }
 `;
 
-export const JobItem = styled(Link)<{ selected: boolean }>`
-  display: block;
-  padding: 11px 16px;
+export const VacancyItem = styled(Link)<{ selected: boolean }>`
+  display: flex;
+  align-items: center;
+  padding: 11px 20px;
   text-decoration: none;
   color: inherit;
+  height: 54px;
   font-weight: ${({ selected }) => (selected ? "600" : "400")};
   background: ${({ selected, theme }) => {
     if (selected) {
@@ -80,10 +91,13 @@ export const JobItem = styled(Link)<{ selected: boolean }>`
     height: 44px;
     display: flex;
     align-items: center;
+    border-right: none;
+    border-left: ${({ selected, theme }) =>
+      selected ? `3px solid ${theme.mainBlue}` : "none"};
   }
 `;
 
-export const JobTitle = styled.span`
+export const VacancyTitle = styled.span`
   display: block;
   font-size: 14px;
   text-overflow: ellipsis;
@@ -93,16 +107,6 @@ export const JobTitle = styled.span`
 
   @media (max-width: 1300px) {
     font-size: 13px;
-  }
-
-  i {
-    font-style: normal;
-    font-size: 11px;
-    opacity: 0.5;
-
-    @media (max-width: 1200px) {
-      display: none;
-    }
   }
 `;
 
@@ -122,8 +126,7 @@ export const ThemeToggle = styled.button`
   @media (max-width: 1200px) {
     position: absolute;
     top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 20px;
     width: 36px;
     height: 36px;
   }

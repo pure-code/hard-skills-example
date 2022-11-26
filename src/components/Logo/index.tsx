@@ -1,8 +1,11 @@
+import { ReactComponent as LogoIcon } from "../../assets/logo.svg";
+
 import { LogoContainer } from "./styled";
 
 const Logo = () => (
   <LogoContainer>
-    <h3>Logo</h3>
+    <LogoIcon />
+    <span>Pipelite</span>
   </LogoContainer>
 );
 

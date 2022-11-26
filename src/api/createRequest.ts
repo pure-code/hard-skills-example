@@ -1,14 +1,64 @@
-// export const host = 'https://randomuser.me/'
+import AuthStore from "../stores/auth";
 
-export const host = "https://rickandmortyapi.com/api/";
+const API_TOKEN = () => localStorage.getItem("api_token");
 
-const request = (url: string, method: string) =>
-  fetch(`${host}${url}`, { method })
-    .then((res) => res.json())
-    .then(({ results }) => results)
+const host =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8080"
+    : "https://pipelite-api.pure-code.ru";
+
+const getInitParam = (data: any, method: string) => {
+  // eslint-disable-next-line no-undef
+  const params: RequestInit = {
+    method,
+    headers: {
+      Authorization: `Bearer ${API_TOKEN()}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  if (data) {
+    params.body = JSON.stringify(data);
+  }
+
+  return params;
+};
+
+const REQUEST = (url: string, method: string, data?: any) =>
+  fetch(`${host}${url}`, getInitParam(data, method))
+    .then((res) => {
+      if (res.status === 401) {
+        AuthStore.logout();
+      }
+      if (!res.ok) {
+        throw res.json();
+      }
+      return res.json();
+    })
+    .then((response) => {
+      if (response.error) {
+        throw response;
+      }
+      return response;
+    })
     .catch((err) => {
       throw err;
     });
 
 export const GETRequest = <Response>(url: string): Promise<Response> =>
-  request(url, "GET");
+  REQUEST(url, "GET");
+
+export const POSTRequest = <Response>(
+  url: string,
+  data?: any
+): Promise<Response> => REQUEST(url, "POST", data);
+
+export const PATCHRequest = <Response>(
+  url: string,
+  data: any
+): Promise<Response> => REQUEST(url, "PATCH", data);
+
+export const DELETERequest = <Response>(
+  url: string,
+  data?: any
+): Promise<Response> => REQUEST(url, "DELETE", data);

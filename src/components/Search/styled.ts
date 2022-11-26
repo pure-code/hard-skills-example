@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SearchContainer = styled.input`
   width: 320px;
-  height: 32px;
+  height: 34px;
   background: ${({ theme }) => (theme.dark ? "#35353a" : theme.listBg)};
   border-radius: 20px;
   padding: 0 20px;
@@ -13,8 +13,8 @@ export const SearchContainer = styled.input`
   border: 2px solid transparent;
 
   @media (max-width: 1000px) {
-    width: 240px;
-    margin: 0;
+    width: 160px;
+    margin: 0 auto 0 10px;
   }
 
   &::placeholder {

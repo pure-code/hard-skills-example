@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Field from "../Field";
 import { FormProps } from "./interfaces";
 
 import { FormContainer, AddBtn, Heading } from "./styled";
 
-const Form = ({ onCreate, onChange, fields, heading, error }: FormProps) => {
+const Form = ({ onSubmit, onChange, fields, heading, error }: FormProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const handleOnCreate = () => {
+  const handleOnSubmit = (ev: FormEvent) => {
+    ev.preventDefault();
     if (error) {
       setIsSubmitted(true);
       return;
     }
-    onCreate();
+    onSubmit();
   };
 
   useEffect(() => {
@@ -22,9 +23,9 @@ const Form = ({ onCreate, onChange, fields, heading, error }: FormProps) => {
   }, []);
 
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleOnSubmit}>
       <Heading>{heading}</Heading>
-      {fields.map(({ type, name, placeholder, required }) => (
+      {fields.map(({ type, name, placeholder, required, initialValue }) => (
         <Field
           key={name}
           type={type}
@@ -32,12 +33,11 @@ const Form = ({ onCreate, onChange, fields, heading, error }: FormProps) => {
           placeholder={placeholder}
           onChange={onChange}
           error={error && isSubmitted}
+          initialValue={initialValue}
           required={required}
         />
       ))}
-      <AddBtn disabled={error && isSubmitted} onClick={handleOnCreate}>
-        Добавить
-      </AddBtn>
+      <AddBtn disabled={error && isSubmitted}>Добавить</AddBtn>
     </FormContainer>
   );
 };

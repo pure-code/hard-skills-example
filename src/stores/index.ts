@@ -1,13 +1,15 @@
 import { configure } from "mobx";
 import auth from "./auth";
-import jobs from "./jobs";
+import vacancies from "./vacancies";
+import candidates from "./candidates";
 import theme from "./theme";
 
 configure({ enforceActions: "always" });
 
 const Store = {
   auth,
-  jobs,
+  vacancies,
+  candidates,
   theme,
 } as const;
 
