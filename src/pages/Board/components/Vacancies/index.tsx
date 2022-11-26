@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { CSSTransition } from "react-transition-group";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../../hooks/useStore";
@@ -29,6 +29,7 @@ const Vacancies = () => {
   } = useStore();
   const [showAddVacancyPopup, setShowAddVacancyPopup] = useState(false);
   const { vacancyId } = useParams<RouteParams>();
+  const navigate = useNavigate();
 
   const handleSetShowAddVacancyPopup = () =>
     setShowAddVacancyPopup((prevState) => !prevState);
@@ -36,6 +37,12 @@ const Vacancies = () => {
   useEffect(() => {
     fetchVacanciesList();
   }, []);
+
+  useEffect(() => {
+    if (vacanciesList.length === 1) {
+      navigate(`${ROUTES.BOARD}/${vacanciesList[0]._id}`);
+    }
+  }, [vacanciesList]);
 
   return (
     <VacanciesContainer>

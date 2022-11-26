@@ -1,28 +1,21 @@
-import { Component, ReactNode } from "react";
+import { ReactNode } from "react";
+import { ErrorBoundary as SentryErrorBoundary } from "@sentry/react";
 
-class ErrorBoundary extends Component<{ children: ReactNode }> {
-  state = { hasError: false };
-
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
-  render() {
-    const { hasError } = this.state;
-    const { children } = this.props;
-    if (hasError) {
-      return (
-        <>
+const ErrorBoundary = ({ children }: { children: ReactNode }) => {
+  return (
+    <SentryErrorBoundary
+      fallback={
+        <div>
           <h1>Что-то пошло не так.</h1>
           <button type="button" onClick={() => window.location.reload()}>
-            Обновить страницу
+            обновить страницу
           </button>
-        </>
-      );
-    }
-
-    return children;
-  }
-}
+        </div>
+      }
+    >
+      {children}
+    </SentryErrorBoundary>
+  );
+};
 
 export default ErrorBoundary;

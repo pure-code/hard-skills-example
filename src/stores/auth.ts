@@ -11,7 +11,12 @@ class Auth {
 
   @action login = (token: string): void => {
     localStorage.setItem("api_token", token);
-    this.isAuthorized = !!localStorage.getItem("api_token");
+    this.setIsAuthorized(true);
+  };
+
+  @action logout = () => {
+    this.setIsAuthorized(false);
+    localStorage.removeItem("api_token");
   };
 
   @action setIsAuthorized = (state: boolean) => {

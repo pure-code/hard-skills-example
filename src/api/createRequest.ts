@@ -1,7 +1,11 @@
+import AuthStore from "../stores/auth";
+
 const API_TOKEN = () => localStorage.getItem("api_token");
 
 const host =
-  process.env.NODE_ENV === "development" ? "http://localhost:8080" : "";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8080"
+    : "https://pipelite-api.pure-code.ru";
 
 const getInitParam = (data: any, method: string) => {
   // eslint-disable-next-line no-undef
@@ -23,6 +27,9 @@ const getInitParam = (data: any, method: string) => {
 const REQUEST = (url: string, method: string, data?: any) =>
   fetch(`${host}${url}`, getInitParam(data, method))
     .then((res) => {
+      if (res.status === 401) {
+        AuthStore.logout();
+      }
       if (!res.ok) {
         throw res.json();
       }
