@@ -28,3 +28,7 @@ Kanban доска для hr-менеджеров. \
 
 ### Запуск теста
 ### `npm test`
+
+## Backend
+
+https://github.com/pure-code/pipelite-backend
