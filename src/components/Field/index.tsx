@@ -4,7 +4,6 @@ import { FieldProps } from "./interfaces";
 import { FieldContainer, CommentField } from "./styled";
 
 const Field = ({
-  onChange,
   placeholder,
   initialValue,
   type,
@@ -19,18 +18,19 @@ const Field = ({
   ) => {
     const { value } = ev.target;
     setFieldValue(value);
-    onChange(name, value);
+  };
+
+  const elementProps = {
+    "data-testid": "inputField",
+    name,
+    error: !!error && !!required && !fieldValue,
+    placeholder,
+    onChange: handleSetFieldValue,
+    value: fieldValue,
   };
 
   if (type === "textarea") {
-    return (
-      <CommentField
-        error={!!error && !!required && !fieldValue}
-        placeholder={placeholder}
-        onChange={handleSetFieldValue}
-        value={fieldValue}
-      />
-    );
+    return <CommentField {...elementProps} />;
   }
 
   useEffect(() => {
@@ -39,14 +39,7 @@ const Field = ({
     }
   }, [initialValue]);
 
-  return (
-    <FieldContainer
-      error={!!error && !!required && !fieldValue}
-      placeholder={placeholder}
-      onChange={handleSetFieldValue}
-      value={fieldValue}
-    />
-  );
+  return <FieldContainer {...elementProps} />;
 };
 
 export default Field;
