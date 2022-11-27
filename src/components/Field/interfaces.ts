@@ -7,6 +7,5 @@ export interface FieldItem {
 }
 
 export interface FieldProps extends FieldItem {
-  onChange: (name: string, value: string) => void;
   error?: boolean;
 }

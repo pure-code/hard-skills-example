@@ -58,6 +58,9 @@ export const ControlsWrap = styled.div`
   margin: 20px 0 0 0;
   padding-top: 20px;
   border-top: 1px solid ${({ theme }) => theme.mainBorder};
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const Delete = styled.button`
@@ -88,4 +91,7 @@ export const Edit = styled(Delete)`
   background: ${({ theme }) => (theme.dark ? theme.cardBg : theme.listBg)};
   margin: 0 20px 0 0;
   color: inherit;
+  @media (max-width: 767px) {
+    margin: 0 0 30px 0;
+  }
 `;

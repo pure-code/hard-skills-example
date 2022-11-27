@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Field from "../Field";
 import { FormProps } from "./interfaces";
 
@@ -15,6 +15,11 @@ const Form = ({ onSubmit, onChange, fields, heading, error }: FormProps) => {
     onSubmit();
   };
 
+  const handleOnChange = (ev: ChangeEvent<HTMLFormElement>) => {
+    const { name, value } = ev.target;
+    onChange(name, value);
+  };
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -23,7 +28,7 @@ const Form = ({ onSubmit, onChange, fields, heading, error }: FormProps) => {
   }, []);
 
   return (
-    <FormContainer onSubmit={handleOnSubmit}>
+    <FormContainer onChange={handleOnChange} onSubmit={handleOnSubmit}>
       <Heading>{heading}</Heading>
       {fields.map(({ type, name, placeholder, required, initialValue }) => (
         <Field
@@ -31,13 +36,18 @@ const Form = ({ onSubmit, onChange, fields, heading, error }: FormProps) => {
           type={type}
           name={name}
           placeholder={placeholder}
-          onChange={onChange}
           error={error && isSubmitted}
           initialValue={initialValue}
           required={required}
         />
       ))}
-      <AddBtn disabled={error && isSubmitted}>Добавить</AddBtn>
+      <AddBtn
+        data-testid="submitBtn"
+        type="submit"
+        disabled={error && isSubmitted}
+      >
+        Добавить
+      </AddBtn>
     </FormContainer>
   );
 };

@@ -19,6 +19,14 @@ module.exports = {
   globals: {
     NodeJS: true,
   },
+  overrides: [
+    {
+      files: ["**/*.test.ts", "**/*.test.tsx"],
+      env: {
+        jest: true,
+      },
+    },
+  ],
   plugins: ["react", "@typescript-eslint"],
   rules: {
     "no-unused-vars": "off",
@@ -27,6 +35,7 @@ module.exports = {
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-one-expression-per-line": "off",
     "no-param-reassign": "off",
     "sort-keys": "off",
