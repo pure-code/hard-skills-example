@@ -23,6 +23,7 @@ export interface CandidatePreviewProps {
 const CandidatePreview = ({ onEdit }: CandidatePreviewProps) => {
   const {
     candidates: { deleteCandidate, selectedCandidate },
+    notification: { pushToNotificationsList },
   } = useStore();
   const { _id, name, grade, link, contact, comment, tags } =
     selectedCandidate || initialCandidate("");
@@ -31,6 +32,7 @@ const CandidatePreview = ({ onEdit }: CandidatePreviewProps) => {
   const handleDeleteCandidate = () => {
     deleteCandidate(_id);
     navigate(-1);
+    pushToNotificationsList({ description: "Кандидат успешно удалён" });
   };
 
   return (

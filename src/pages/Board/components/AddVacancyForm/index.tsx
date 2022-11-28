@@ -26,6 +26,7 @@ const fields = (vacancy: Vacancy | VacancyInfo): FieldItem[] => [
 const AddVacancyForm = ({ onSubmit, isEdit, heading }: AddVacancyFormProps) => {
   const {
     vacancies: { addVacancy, selectedVacancy, updateVacancy },
+    notification: { pushToNotificationsList },
   } = useStore();
   const [newVacancy, setNewVacancy] = useState(
     isEdit ? selectedVacancy : initialVacancyInfo()
@@ -41,11 +42,17 @@ const AddVacancyForm = ({ onSubmit, isEdit, heading }: AddVacancyFormProps) => {
     if (isEdit) {
       updateVacancy(newVacancy as VacancyInfo).then(() => {
         onSubmit();
+        pushToNotificationsList({
+          description: "Вакансия успешно обновлена",
+        });
       });
     } else {
       addVacancy(newVacancy as VacancyInfo).then((res) => {
         onSubmit();
         navigate(`${ROUTES.BOARD}/${res._id}`);
+        pushToNotificationsList({
+          description: "Вакансия успешно добавлена",
+        });
       });
     }
   };
@@ -57,6 +64,7 @@ const AddVacancyForm = ({ onSubmit, isEdit, heading }: AddVacancyFormProps) => {
       onChange={handleSetNewVacancy}
       fields={fields(newVacancy)}
       heading={heading}
+      isEdit={isEdit}
     />
   );
 };

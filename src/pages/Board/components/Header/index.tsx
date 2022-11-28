@@ -30,6 +30,7 @@ const Header = ({ title }: HeaderProps) => {
   const {
     vacancies: { deleteVacancy, selectedVacancy },
     candidates: { setSearchQuery },
+    notification: { pushToNotificationsList },
   } = useStore();
   const [isOpenCreateCandidateForm, setIsOpenCreateCandidateForm] =
     useState(false);
@@ -47,6 +48,7 @@ const Header = ({ title }: HeaderProps) => {
 
   const handleDeleteVacancy = () => {
     deleteVacancy(selectedVacancy._id).then(() => {
+      pushToNotificationsList({ description: "Вакансия успешно удалена" });
       navigate(ROUTES.BOARD);
     });
   };

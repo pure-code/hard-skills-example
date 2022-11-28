@@ -15,6 +15,7 @@ const AddCandidateForm = ({
   const {
     vacancies: { selectedVacancy },
     candidates: { addCandidate, updateCandidate, selectedCandidate },
+    notification: { pushToNotificationsList },
   } = useStore();
   const [newCandidate, setNewCandidate] = useState<Candidate>(
     selectedCandidate || initialCandidate(selectedVacancy._id)
@@ -28,6 +29,11 @@ const AddCandidateForm = ({
   const handleAddCandidate = () => {
     const actionOnCandidate = isEdit ? updateCandidate : addCandidate;
     actionOnCandidate(newCandidate);
+    pushToNotificationsList({
+      description: isEdit
+        ? "Кандидат успешно обновлён"
+        : "Кандидат успешно добавлен",
+    });
     onSubmit();
   };
 
@@ -38,6 +44,7 @@ const AddCandidateForm = ({
       fields={addCandidateFormFields(newCandidate)}
       heading={heading}
       error={isError}
+      isEdit={isEdit}
     />
   );
 };
