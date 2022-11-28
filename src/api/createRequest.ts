@@ -1,4 +1,5 @@
 import AuthStore from "../stores/auth";
+import NotificationStore from "../stores/notification";
 
 const API_TOKEN = () => localStorage.getItem("api_token");
 
@@ -30,9 +31,6 @@ const REQUEST = (url: string, method: string, data?: any) =>
       if (res.status === 401) {
         AuthStore.logout();
       }
-      if (!res.ok) {
-        throw res.json();
-      }
       return res.json();
     })
     .then((response) => {
@@ -42,6 +40,12 @@ const REQUEST = (url: string, method: string, data?: any) =>
       return response;
     })
     .catch((err) => {
+      if (err.error) {
+        NotificationStore.pushToNotificationsList({
+          description: `Ошибка: ${err.message}`,
+          error: true,
+        });
+      }
       throw err;
     });
 

@@ -6,4 +6,5 @@ export interface FormProps {
   onSubmit: () => void;
   fields: FieldItem[];
   error: boolean;
+  isEdit?: boolean;
 }

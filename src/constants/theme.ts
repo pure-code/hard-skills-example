@@ -11,6 +11,7 @@ export const theme = (isDarkTheme: boolean) =>
         scrollBtn: "#3d434a",
         mainBlue: "#7487eb",
         mainRed: "#f34c44",
+        notificationGreen: "#2db953",
       }
     : {
         mainBg: "#fff",
@@ -22,4 +23,5 @@ export const theme = (isDarkTheme: boolean) =>
         scrollBtn: "#c6c9cd",
         mainBlue: "#7487eb",
         mainRed: "#f34c44",
+        notificationGreen: "#2db953",
       };

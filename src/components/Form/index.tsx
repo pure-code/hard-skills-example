@@ -4,7 +4,14 @@ import { FormProps } from "./interfaces";
 
 import { FormContainer, AddBtn, Heading } from "./styled";
 
-const Form = ({ onSubmit, onChange, fields, heading, error }: FormProps) => {
+const Form = ({
+  onSubmit,
+  onChange,
+  fields,
+  heading,
+  error,
+  isEdit,
+}: FormProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const handleOnSubmit = (ev: FormEvent) => {
     ev.preventDefault();
@@ -46,7 +53,7 @@ const Form = ({ onSubmit, onChange, fields, heading, error }: FormProps) => {
         type="submit"
         disabled={error && isSubmitted}
       >
-        Добавить
+        {isEdit ? "Обновить" : "Добавить"}
       </AddBtn>
     </FormContainer>
   );
