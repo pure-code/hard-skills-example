@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { DOMRectProps, UseDragDropProps } from "./interfaces";
 
 const initialDomRect: DOMRectProps = {
@@ -6,12 +6,9 @@ const initialDomRect: DOMRectProps = {
   left: 0,
 };
 
-const useDragAndDrop = ({
-  onDrop,
-  dragItemRef,
-  handleOnItemMove,
-}: UseDragDropProps) => {
+const useDragAndDrop = ({ onDrop, handleOnItemMove }: UseDragDropProps) => {
   const isDragged = useRef(false);
+  const dragItemRef = useRef<HTMLElement | null>(null);
   const coors = useRef<DOMRectProps>(initialDomRect);
   const shiftX = useRef(0);
   const shiftY = useRef(0);
@@ -74,7 +71,7 @@ const useDragAndDrop = ({
     const dropZone = document.elementFromPoint(evClientX, evClientY);
     dragItemRef.current.style.pointerEvents = "";
     if (onDrop) {
-      onDrop(dropZone);
+      onDrop(dropZone, dragItemRef.current);
     }
     reset();
   };
@@ -90,7 +87,8 @@ const useDragAndDrop = ({
     coors.current = dragItemRef.current.getBoundingClientRect();
   };
 
-  const onDragStart = () => {
+  const onDragStart = (ev: React.MouseEvent | React.TouchEvent) => {
+    dragItemRef.current = ev.currentTarget as HTMLElement;
     if (dragItemRef.current) {
       coors.current = dragItemRef.current.getBoundingClientRect();
     }
@@ -108,6 +106,7 @@ const useDragAndDrop = ({
 
   return {
     onDragStart,
+    dragItemRef: dragItemRef.current,
   };
 };
 

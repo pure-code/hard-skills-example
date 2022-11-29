@@ -12,7 +12,7 @@ import Header from "pages/Board/components/Header";
 import CandidatePreview from "pages/Board/components/CandidatePreview";
 import ColumnHeading from "pages/Board/components/ColumnHeading";
 import AddCandidateForm from "pages/Board/components/AddCandidateForm";
-import { useCandidateManager } from "./hooks/useCandidateManager";
+import { useColumnsManager } from "./hooks/useColumnsManager";
 
 import {
   ColumnContainer,
@@ -32,7 +32,7 @@ const Columns = () => {
   const { vacancyId, candidateId } = useParams<RouteParams>();
   const [isEdit, setIsEdit] = useState(false);
   const allColumns = useRef<HTMLDivElement[] | null[]>([]);
-  const { handleMoveCandidate, handleOnItemMove } = useCandidateManager(
+  const { handleMoveCandidate, handleOnItemMove } = useColumnsManager(
     allColumns.current
   );
   const navigate = useNavigate();

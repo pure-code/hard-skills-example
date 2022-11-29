@@ -1,22 +1,12 @@
 import { useCallback, useRef } from "react";
 import { throttle } from "shared/lib/throttle";
 import { UseDragDropPropsReturn } from "shared/lib/interfaces";
-
-export interface UseCandidateItemManagerProps {
-  onDrop: (dropZone: Element | null) => void;
-  onItemMove: (
-    props: Pick<
-      UseDragDropPropsReturn,
-      "mouseY" | "hoveredElement" | "dragItem"
-    >
-  ) => void;
-}
+import { UseCandidateItemManagerProps } from "./interfaces";
 
 export const useCandidateItemManager = ({
   onDrop,
   onItemMove,
 }: UseCandidateItemManagerProps) => {
-  const dragItemRef = useRef<HTMLAnchorElement | null>(null);
   const isDragging = useRef(false);
   const startedDragItemPosition = useRef({ x: 0, y: 0, width: 0 });
 
@@ -30,20 +20,20 @@ export const useCandidateItemManager = ({
       hoveredElement,
       dragItem,
     }: UseDragDropPropsReturn) => {
-      if (dragItemRef.current) {
+      if (dragItem) {
         if (!startedDragItemPosition.current.x) {
-          const { x, y, width } = dragItemRef.current.getBoundingClientRect();
+          const { x, y, width } = dragItem.getBoundingClientRect();
           startedDragItemPosition.current = { x, y, width };
         }
 
         document.body.classList.add("dragging");
-        dragItemRef.current?.classList.add("moved");
-        dragItemRef.current.style.transform = `translate(${translateX}px, ${translateY}px) rotate(-4deg)`;
-        dragItemRef.current.style.position = "fixed";
-        dragItemRef.current.style.top = `${startedDragItemPosition.current.y}px`;
-        dragItemRef.current.style.left = `${startedDragItemPosition.current.x}px`;
-        dragItemRef.current.style.zIndex = "999999";
-        dragItemRef.current.style.width = `${startedDragItemPosition.current.width}px`;
+        dragItem?.classList.add("moved");
+        dragItem.style.transform = `translate(${translateX}px, ${translateY}px) rotate(-4deg)`;
+        dragItem.style.position = "fixed";
+        dragItem.style.top = `${startedDragItemPosition.current.y}px`;
+        dragItem.style.left = `${startedDragItemPosition.current.x}px`;
+        dragItem.style.zIndex = "999999";
+        dragItem.style.width = `${startedDragItemPosition.current.width}px`;
       }
 
       isDragging.current = true;
@@ -52,17 +42,17 @@ export const useCandidateItemManager = ({
     []
   );
 
-  const handleOnDrop = (dropZone: Element | null) => {
+  const handleOnDrop = (dropZone: Element | null, dragItem: HTMLElement) => {
     onDrop(dropZone);
-    if (dragItemRef.current) {
+    if (dragItem) {
       document.body.classList.remove("dragging");
-      dragItemRef.current?.classList.remove("moved");
-      dragItemRef.current.style.transform = "";
-      dragItemRef.current.style.position = "";
-      dragItemRef.current.style.top = "";
-      dragItemRef.current.style.left = "";
-      dragItemRef.current.style.zIndex = "";
-      dragItemRef.current.style.width = "";
+      dragItem?.classList.remove("moved");
+      dragItem.style.transform = "";
+      dragItem.style.position = "";
+      dragItem.style.top = "";
+      dragItem.style.left = "";
+      dragItem.style.zIndex = "";
+      dragItem.style.width = "";
     }
     startedDragItemPosition.current = { x: 0, y: 0, width: 0 };
     setTimeout(() => {
@@ -70,7 +60,6 @@ export const useCandidateItemManager = ({
     }, 100);
   };
   return {
-    dragItemRef,
     handleOnItemMove,
     handleOnDrop,
     isDragging,
