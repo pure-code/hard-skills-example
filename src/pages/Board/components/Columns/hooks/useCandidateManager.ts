@@ -1,6 +1,6 @@
 import { useCallback, useRef } from "react";
-import { UseDragDropPropsReturn } from "../../../../../hooks/interfaces";
-import { useStore } from "../../../../../hooks/useStore";
+import { useStore } from "shared/lib/useStore";
+import { UseDragDropPropsReturn } from "shared/lib/interfaces";
 
 export const useCandidateManager = (allColumns: HTMLDivElement[] | null[]) => {
   const {

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../../../hooks/useStore";
-import { Candidate } from "../../../../types";
-import { initialCandidate } from "../../../../stores/initialData";
-import Form from "../../../../components/Form";
+import { useStore } from "shared/lib/useStore";
+import { Candidate } from "shared/types";
+import { initialCandidate } from "shared/stores/initialData";
+import Form from "shared/ui/Form";
 import { AddCandidateFormProps } from "./interfaces";
 import { addCandidateFormFields } from "./initialData";
 

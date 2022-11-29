@@ -2,17 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useParams, useNavigate } from "react-router";
 import { CSSTransition } from "react-transition-group";
-import { useStore } from "../../../../hooks/useStore";
-import CandidateItem from "../CandidateItem";
-import ScrollContainer from "../../../../components/ScrollContainer";
-import Header from "../Header";
+import { useStore } from "shared/lib/useStore";
+import ScrollContainer from "shared/ui/ScrollContainer";
+import { Candidate, RouteParams } from "shared/types";
+import Popup from "shared/ui/Popup";
+import { GROUP_COLORS } from "shared/constants/colors";
+import CandidateItem from "pages/Board/components/CandidateItem";
+import Header from "pages/Board/components/Header";
+import CandidatePreview from "pages/Board/components/CandidatePreview";
+import ColumnHeading from "pages/Board/components/ColumnHeading";
+import AddCandidateForm from "pages/Board/components/AddCandidateForm";
 import { useCandidateManager } from "./hooks/useCandidateManager";
-import { Candidate, RouteParams } from "../../../../types";
-import CandidatePreview from "../CandidatePreview";
-import Popup from "../../../../components/Popup";
-import ColumnHeading from "../ColumnHeading";
-import { GROUP_COLORS } from "../../../../constants/colors";
-import AddCandidateForm from "../AddCandidateForm";
 
 import {
   ColumnContainer,

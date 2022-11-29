@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../../../hooks/useStore";
-import { initialVacancyInfo } from "../../../../stores/initialData";
-import Form from "../../../../components/Form";
-import { ROUTES } from "../../../../constants/routes";
+import { useStore } from "shared/lib/useStore";
+import { initialVacancyInfo } from "shared/stores/initialData";
+import Form from "shared/ui/Form";
+import { ROUTES } from "shared/constants/routes";
+import { FieldItem } from "shared/ui/Field/interfaces";
+import { Vacancy, VacancyInfo } from "shared/types";
 import { AddVacancyFormProps, AddVacancyFieldsNames } from "./interfaces";
-import { FieldItem } from "../../../../components/Field/interfaces";
-import { Vacancy, VacancyInfo } from "../../../../types";
 
 const fields = (vacancy: Vacancy | VacancyInfo): FieldItem[] => [
   {

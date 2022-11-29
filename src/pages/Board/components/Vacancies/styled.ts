@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
+import { HEADER_HEIGHT } from "shared/constants/globalStyles";
 
 export const VacanciesContainer = styled.div`
   position: relative;

@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../../../hooks/useStore";
-import Tags from "../../../../components/Tags";
-import { initialCandidate } from "../../../../stores/initialData";
-import { ReactComponent as DeleteIcon } from "../../../../assets/delete.svg";
+import { useStore } from "shared/lib/useStore";
+import Tags from "shared/ui/Tags";
+import { initialCandidate } from "shared/stores/initialData";
+import { ReactComponent as DeleteIcon } from "shared/ui/icons/delete.svg";
 
 import {
   CandidatePreviewContainer,

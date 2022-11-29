@@ -1,4 +1,4 @@
-import { Candidate } from "../../../../types";
+import { Candidate } from "shared/types";
 
 export interface AddCandidateFormProps {
   onSubmit: () => void;

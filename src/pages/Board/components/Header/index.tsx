@@ -2,17 +2,17 @@ import { useCallback, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router";
-import { useStore } from "../../../../hooks/useStore";
-import AddCandidateForm from "../AddCandidateForm";
-import Popup from "../../../../components/Popup";
-import Search from "../../../../components/Search";
-import AddVacancyForm from "../AddVacancyForm";
-import ConfirmPopup from "../../../../components/ConfirmPopup";
-import { debounce } from "../../../../utils/debounce";
-import { ROUTES } from "../../../../constants/routes";
-import { ReactComponent as AddCandidateIcon } from "../../../../assets/addCandidate.svg";
-import { ReactComponent as EditIcon } from "../../../../assets/edit.svg";
-import { ReactComponent as DeleteIcon } from "../../../../assets/delete.svg";
+import { useStore } from "shared/lib/useStore";
+import Popup from "shared/ui/Popup";
+import Search from "shared/ui/Search";
+import ConfirmPopup from "shared/ui/ConfirmPopup";
+import { debounce } from "shared/lib/debounce";
+import { ROUTES } from "shared/constants/routes";
+import { ReactComponent as AddCandidateIcon } from "shared/ui/icons/addCandidate.svg";
+import { ReactComponent as EditIcon } from "shared/ui/icons/edit.svg";
+import { ReactComponent as DeleteIcon } from "shared/ui/icons/delete.svg";
+import AddVacancyForm from "pages/Board/components/AddVacancyForm";
+import AddCandidateForm from "pages/Board/components/AddCandidateForm";
 
 import {
   AddCandidateBtn,

@@ -1,9 +1,9 @@
 import { memo } from "react";
-import useDragAndDrop from "../../../../hooks/useDragAndDrop";
+import useDragAndDrop from "shared/lib/useDragAndDrop";
+import { Candidate } from "shared/types";
+import { ROUTES } from "shared/constants/routes";
+import Tags from "shared/ui/Tags";
 import { useCandidateItemManager } from "./hooks/useCandidateItemManager";
-import { Candidate } from "../../../../types";
-import { ROUTES } from "../../../../constants/routes";
-import Tags from "../../../../components/Tags";
 import { CandidateItemProps } from "./interfaces";
 
 import { CandidateItemContainer, Grade, Info, MoreBtn, Name } from "./styled";

@@ -1,5 +1,5 @@
-import { Candidate } from "../../../../types";
-import { FieldItem } from "../../../../components/Field/interfaces";
+import { Candidate } from "shared/types";
+import { FieldItem } from "shared/ui/Field/interfaces";
 import { AddCandidateFieldsNames } from "./interfaces";
 
 export const addCandidateFormFields = (candidate: Candidate): FieldItem[] => [

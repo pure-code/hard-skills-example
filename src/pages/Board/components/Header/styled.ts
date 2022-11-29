@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
+import { HEADER_HEIGHT } from "shared/constants/globalStyles";
 
 export const HeaderContainer = styled.header`
   display: flex;

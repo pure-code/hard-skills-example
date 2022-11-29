@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { CSSTransition } from "react-transition-group";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../../../hooks/useStore";
-import { ROUTES } from "../../../../constants/routes";
-import Popup from "../../../../components/Popup";
-import Logo from "../../../../components/Logo";
-import AddVacancyForm from "../AddVacancyForm";
-import { RouteParams } from "../../../../types";
-import { ReactComponent as DayIcon } from "../../../../assets/day.svg";
-import { ReactComponent as NightIcon } from "../../../../assets/night.svg";
+import { useStore } from "shared/lib/useStore";
+import { ROUTES } from "shared/constants/routes";
+import Popup from "shared/ui/Popup";
+import Logo from "shared/ui/Logo";
+import { RouteParams } from "shared/types";
+import { ReactComponent as DayIcon } from "shared/ui/icons/day.svg";
+import { ReactComponent as NightIcon } from "shared/ui/icons/night.svg";
+import AddVacancyForm from "pages/Board/components/AddVacancyForm";
 
 import {
   AddVacancyBtn,

@@ -1,5 +1,5 @@
-import { Candidate } from "../../../../types";
-import { UseDragDropPropsReturn } from "../../../../hooks/interfaces";
+import { Candidate } from "shared/types";
+import { UseDragDropPropsReturn } from "shared/lib/interfaces";
 
 export interface CandidateItemProps {
   item: Candidate;

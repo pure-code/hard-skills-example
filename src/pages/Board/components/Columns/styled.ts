@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { HEADER_HEIGHT } from "../../../../constants/globalStyles";
-import { CandidateItemContainer } from "../CandidateItem/styled";
+import { HEADER_HEIGHT } from "shared/constants/globalStyles";
+import { CandidateItemContainer } from "pages/Board/components/CandidateItem/styled";
 
 export const ColumnsContainer = styled.div`
   flex-basis: 100%;

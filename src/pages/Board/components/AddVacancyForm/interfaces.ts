@@ -1,4 +1,4 @@
-import { Vacancy } from "../../../../types";
+import { Vacancy } from "shared/types";
 
 export interface AddVacancyFormProps {
   onSubmit: () => void;

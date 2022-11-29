@@ -2,13 +2,13 @@ import ReactDOM from "react-dom/client";
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "./hooks/useStore";
-import stores from "./stores";
-import RoutesManager from "./Routes";
-import ErrorBoundary from "./components/ErrorBoundary";
-import "./baseStyles/base.css";
-import "./baseStyles/fontFace.css";
-import "./baseStyles/normalize.css";
+import { Provider } from "shared/lib/useStore";
+import stores from "shared/stores";
+import RoutesManager from "routes";
+import ErrorBoundary from "shared/ui/ErrorBoundary";
+import "./app/styles/base.css";
+import "./app/styles/fontFace.css";
+import "./app/styles/normalize.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

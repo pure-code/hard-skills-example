@@ -1,6 +1,6 @@
 import { useCallback, useRef } from "react";
-import { throttle } from "../../../../../utils/throttle";
-import { UseDragDropPropsReturn } from "../../../../../hooks/interfaces";
+import { throttle } from "shared/lib/throttle";
+import { UseDragDropPropsReturn } from "shared/lib/interfaces";
 
 export interface UseCandidateItemManagerProps {
   onDrop: (dropZone: Element | null) => void;
