@@ -32,6 +32,8 @@ const AddVacancyForm = ({ onSubmit, isEdit, heading }: AddVacancyFormProps) => {
     isEdit ? selectedVacancy : initialVacancyInfo()
   );
   const isError = !newVacancy.name;
+  const isChangedValue =
+    isEdit && JSON.stringify(selectedVacancy) !== JSON.stringify(newVacancy);
   const navigate = useNavigate();
 
   const handleSetNewVacancy = (type: string, value: string) => {
@@ -65,6 +67,7 @@ const AddVacancyForm = ({ onSubmit, isEdit, heading }: AddVacancyFormProps) => {
       fields={fields(newVacancy)}
       heading={heading}
       isEdit={isEdit}
+      disableSubmit={isEdit && !isChangedValue}
     />
   );
 };

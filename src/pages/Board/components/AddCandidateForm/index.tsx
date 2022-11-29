@@ -22,6 +22,10 @@ const AddCandidateForm = ({
   );
   const isError = !newCandidate.name || !newCandidate.grade;
 
+  const isChangedValue =
+    isEdit &&
+    JSON.stringify(selectedCandidate) !== JSON.stringify(newCandidate);
+
   const handleSetNewCandidate = (type: string, value: string) => {
     setNewCandidate((prevState) => ({ ...prevState, [type]: value }));
   };
@@ -45,6 +49,7 @@ const AddCandidateForm = ({
       heading={heading}
       error={isError}
       isEdit={isEdit}
+      disableSubmit={isEdit && !isChangedValue}
     />
   );
 };

@@ -11,8 +11,10 @@ const Form = ({
   heading,
   error,
   isEdit,
+  disableSubmit,
 }: FormProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const isDisabledSubmit = disableSubmit || (error && isSubmitted);
   const handleOnSubmit = (ev: FormEvent) => {
     ev.preventDefault();
     if (error) {
@@ -48,11 +50,7 @@ const Form = ({
           required={required}
         />
       ))}
-      <AddBtn
-        data-testid="submitBtn"
-        type="submit"
-        disabled={error && isSubmitted}
-      >
+      <AddBtn data-testid="submitBtn" type="submit" disabled={isDisabledSubmit}>
         {isEdit ? "Обновить" : "Добавить"}
       </AddBtn>
     </FormContainer>
