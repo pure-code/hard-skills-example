@@ -7,4 +7,5 @@ export interface FormProps {
   fields: FieldItem[];
   error: boolean;
   isEdit?: boolean;
+  disableSubmit?: boolean;
 }
