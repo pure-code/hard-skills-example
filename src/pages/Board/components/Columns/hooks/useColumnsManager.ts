@@ -2,7 +2,7 @@ import { useCallback, useRef } from "react";
 import { useStore } from "shared/lib/useStore";
 import { UseDragDropPropsReturn } from "shared/lib/interfaces";
 
-export const useCandidateManager = (allColumns: HTMLDivElement[] | null[]) => {
+export const useColumnsManager = (allColumns: HTMLDivElement[] | null[]) => {
   const {
     candidates: { moveCandidate },
   } = useStore();
