@@ -42,7 +42,7 @@ const REQUEST = (url: string, method: string, data?: any) =>
     .catch((err) => {
       if (err.error) {
         NotificationStore.pushToNotificationsList({
-          description: `Ошибка: ${err.message}`,
+          description: `${err.error}: ${err.message}`,
           error: true,
         });
       }

@@ -20,7 +20,6 @@ Kanban доска для hr-менеджеров. \
 - [x] ~~Написать бэкенд~~
 - [x] ~~Интеграция с реальным API~~
 - [ ] Юнит-тесты на основной функционал
-- [ ] Рефакторинг
 
 ### Локальный запуск проекта
 ### `npm install` > `npm start`
@@ -31,4 +30,4 @@ Kanban доска для hr-менеджеров. \
 
 ## Backend
 
-https://github.com/pure-code/pipelite-backend
+### `https://github.com/pure-code/pipelite-backend`
