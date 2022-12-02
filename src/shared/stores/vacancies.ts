@@ -16,6 +16,8 @@ class Vacancies {
 
   vacanciesList: VacancyInfoList = [];
 
+  cachedVacancies: Record<string, Vacancy> = {};
+
   isFetchingVacancies = true;
 
   selectedVacancy = initialVacancy();
@@ -31,9 +33,14 @@ class Vacancies {
 
   @action setSelectedVacancy = (vacancy: Vacancy) => {
     this.selectedVacancy = vacancy;
+    this.cachedVacancies[vacancy._id] = vacancy;
   };
 
   @action fetchVacancyById = (vacancyId: string) => {
+    if(this.cachedVacancies[vacancyId]){
+      this.setSelectedVacancy(this.cachedVacancies[vacancyId])
+      return;
+    }
     getVacancyById(vacancyId).then((vacancy) => {
       this.setSelectedVacancy(vacancy);
     });

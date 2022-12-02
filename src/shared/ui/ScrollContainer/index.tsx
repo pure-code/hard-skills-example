@@ -24,7 +24,7 @@ const ScrollContainer = ({ children }: ScrollContainerProps) => {
   const [isVisibleScrollBtn, setIsVisibleScrollBtn] = useState(false);
   const scrollWrapperRef = useRef<HTMLDivElement | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const scrollBtnRef = useRef<HTMLElement | null>(null);
+  const scrollBtnRef = useRef<HTMLDivElement | null>(null);
   const scrollRatio = useRef<number>(1);
 
   const handleSetScrollBtnHeight = () => {
@@ -48,7 +48,7 @@ const ScrollContainer = ({ children }: ScrollContainerProps) => {
         mouseY -
         shiftY -
         (scrollContainerRef.current?.getBoundingClientRect().top || 0); // TODO убрать в константу
-      scrollBtnRef.current = dragItem;
+      scrollBtnRef.current = dragItem as HTMLDivElement;
 
       if (
         scrollBtnRef.current &&
@@ -91,7 +91,9 @@ const ScrollContainer = ({ children }: ScrollContainerProps) => {
       </ScrollWrapper>
       {isVisibleScrollBtn && (
         <CustomScrollBtn
+          ref={scrollBtnRef}
           onMouseDown={onDragStart}
+          onTouchStart={onDragStart}
           style={{ top: `${scrollBarPosition}px`, height: scrollBtnHeight }}
         />
       )}
