@@ -1,0 +1,22 @@
+body {
+    font: 400 16px Nunito, sans-serif;
+    background: #28282c;
+}
+
+.switchTheme *{
+    transition: .2s;
+}
+
+.dragging, .dragging .overflowHiddenOnDrag{
+    overflow: hidden;
+}
+
+*::selection {
+    background: #4d84ff;
+    color: #fff;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}

@@ -1,0 +1,2 @@
+export const HEADER_HEIGHT = 66;
+export const NOTIFICATION_TRANSITION_TIME_MS = 400;
